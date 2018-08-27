@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { GraphComponent } from './components/graph/graph.component';
+import { GraphComponent } from './visuals/graph/graph.component';
+import { NodeVisualComponent } from './visuals/shared/node-visual.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GraphComponent
+    GraphComponent,
+    NodeVisualComponent
   ],
   imports: [
     BrowserModule
