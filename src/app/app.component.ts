@@ -12,7 +12,7 @@ export class AppComponent {
   links: Link[] = [];
 
   constructor() {
-    const N = 20,
+    const N = 1,
           getIndex = number => number - 1;
 
     /** constructing the nodes array */

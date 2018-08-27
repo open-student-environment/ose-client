@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Link } from '../../d3/models';
 
 @Component({
-  selector: 'app-link-visual',
+  selector: '[app-link-visual]',
   template: `
     <svg:line
         [attr.x1]="link.source.x"

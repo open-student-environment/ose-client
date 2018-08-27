@@ -4,12 +4,7 @@ import { ForceDirectedGraph, Node } from '../../d3/models';
 
 @Component({
   selector: 'app-graph',
-  template: `
-    <svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
-        <svg:app-link-visual [link]="link" *ngFor="let link of links">
-        <svg:app-node-visual [node]="node" *ngFor="let node of nodes">
-    </svg>
-  `,
+  templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit, AfterViewInit {
@@ -23,7 +18,6 @@ export class GraphComponent implements OnInit, AfterViewInit {
   constructor(private d3Service: D3Service) { }
 
   ngOnInit() {
-    /** Receiving an initialized simulated graph from our custom d3 service */
     this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
   }
 
