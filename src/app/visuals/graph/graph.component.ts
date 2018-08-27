@@ -7,9 +7,9 @@ import { ForceDirectedGraph, Node } from '../../d3/models';
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.css']
 })
-export class GraphComponent implements OnInit, AfterViewInit {
-  @Input('nodes') nodes;
-  @Input('links') links;
+export class GraphComponent implements OnInit {
+
+  @Input() adjancy: any;
 
   graph: ForceDirectedGraph;
 
@@ -18,11 +18,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
   constructor(private d3Service: D3Service) { }
 
   ngOnInit() {
-    this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
-  }
-
-  ngAfterViewInit() {
-    this.graph.initSimulation(this.options);
+    this.graph = this.d3Service.getForceDirectedGraph(this.adjancy, this.options);
   }
 
   get options() {

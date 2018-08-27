@@ -13,14 +13,34 @@ export class ForceDirectedGraph {
     public ticker: EventEmitter<d3.Simulation<Node, Link>> = new EventEmitter();
     public simulation: d3.Simulation<any, any>;
 
+    adjancy: any;
     public nodes: Node[] = [];
     public links: Link[] = [];
 
-    constructor(nodes, links, options: { width, height }) {
-        this.nodes = nodes;
-        this.links = links;
-
+    constructor(adjancy, options: { width, height }) {
+        this.adjancy = adjancy;
+        this.initGraph();
         this.initSimulation(options);
+
+    }
+
+    initGraph() {
+
+        const nodes = d3.keys(this.adjancy);
+        const links = [];
+        for (let i = 1; i <= nodes.length; i++) {
+            const source = nodes[i];
+            for (const target of this.adjancy[i.toString()]) {
+                links.push({source: source, target: target});
+            }
+        }
+        for (const node of nodes) {
+            this.nodes.push({id: node});
+        }
+        for (const link of links) {
+            this.links.push(new Link(link.source, link.target));
+        }
+        this.links = links;
     }
 
     initNodes() {
