@@ -18,6 +18,7 @@ export class GraphService {
 
   getAdjancy() {
     const url = 'http://localhost:5000/adjancy';
+    console.log('here');
     return this.httpClient.get(url);
   }
 }

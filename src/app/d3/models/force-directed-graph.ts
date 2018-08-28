@@ -4,9 +4,9 @@ import { Node } from './node';
 import * as d3 from 'd3';
 
 const FORCES = {
-    LINKS: 1 / 50,
+    LINKS: 20 / 50,
     COLLISION: 1,
-    CHARGE: -150
+    CHARGE: -1000
 };
 
 export class ForceDirectedGraph {
@@ -53,10 +53,7 @@ export class ForceDirectedGraph {
 
             // Creating the force simulation and defining the charges
             this.simulation = d3.forceSimulation()
-            .force('charge',
-                d3.forceManyBody()
-                    .strength(FORCES.CHARGE)
-            );
+                .force('charge', d3.forceManyBody().strength(FORCES.CHARGE));
 
             // Connecting the d3 ticker to an angular event emitter
             this.simulation.on('tick', function () {

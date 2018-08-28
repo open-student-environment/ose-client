@@ -21,15 +21,20 @@ export class GraphComponent implements OnInit {
 
   ngOnInit() {
     const nodes = Object.keys(this.adjancy).map(i => new Node(i));
+    const invnodes = {};
+    for (const node of nodes) {
+      invnodes[node.id] = node;
+    }
     const links = [];
-    for (let i = 1; i < nodes.length; i++) {
+    for (let i = 0; i < nodes.length; i++) {
         const source = nodes[i];
-        for (const target of this.adjancy[i.toString()]) {
-            links.push(new Link(source.id, target));
+        for (const target of this.adjancy[source.id]) {
+            links.push(new Link(source, invnodes[target]));
         }
     }
     this.nodes = nodes;
     this.links = links;
+    console.log(invnodes);
     this.graph = this.d3Service.getForceDirectedGraph(nodes, links, this.options);
   }
 
