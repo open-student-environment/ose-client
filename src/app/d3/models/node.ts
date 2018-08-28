@@ -10,8 +10,8 @@ export class Node implements d3.SimulationNodeDatum {
 
   id: string;
 
-  constructor(index: number) {
-    this.index = index;
+  constructor(id: string) {
+    this.id = id;
   }
 
 }

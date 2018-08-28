@@ -6,7 +6,7 @@ import * as d3 from 'd3';
 const FORCES = {
     LINKS: 1 / 50,
     COLLISION: 1,
-    CHARGE: -1
+    CHARGE: -150
 };
 
 export class ForceDirectedGraph {
@@ -17,30 +17,10 @@ export class ForceDirectedGraph {
     public nodes: Node[] = [];
     public links: Link[] = [];
 
-    constructor(adjancy, options: { width, height }) {
-        this.adjancy = adjancy;
-        this.initGraph();
-        this.initSimulation(options);
-
-    }
-
-    initGraph() {
-
-        const nodes = d3.keys(this.adjancy);
-        const links = [];
-        for (let i = 1; i <= nodes.length; i++) {
-            const source = nodes[i];
-            for (const target of this.adjancy[i.toString()]) {
-                links.push({source: source, target: target});
-            }
-        }
-        for (const node of nodes) {
-            this.nodes.push({id: node});
-        }
-        for (const link of links) {
-            this.links.push(new Link(link.source, link.target));
-        }
+    constructor(nodes, links, options: { width, height }) {
+        this.nodes = nodes;
         this.links = links;
+        this.initSimulation(options);
     }
 
     initNodes() {
@@ -67,7 +47,6 @@ export class ForceDirectedGraph {
         if (!options || !options.width || !options.height) {
             throw new Error('missing options when initializing simulation');
         }
-
         /** Creating the simulation */
         if (!this.simulation) {
             const ticker = this.ticker;
