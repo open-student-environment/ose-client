@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as d3 from 'd3';
 import { ForceDirectedGraph, Link, Node } from './models';
+import { DraggableDirective } from './directives/draggable.directive';
 
 
 @Injectable()
