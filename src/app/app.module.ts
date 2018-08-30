@@ -12,6 +12,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { GraphService } from './services/graph.service';
 import { SchoolsComponent } from './schools/schools.component';
@@ -30,7 +31,7 @@ import { SchoolsComponent } from './schools/schools.component';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTableModule, MatCheckboxModule
+    MatTableModule, MatCheckboxModule, MatPaginatorModule
   ],
   providers: [
     HttpClient,
