@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 
 import { Observable, of, from } from 'rxjs';
@@ -16,11 +16,10 @@ import { SchoolsService } from '../services/schools.service';
 })
 export class SchoolsComponent implements OnInit {
 
-  schools: School[];
-  schools$: Observable<any> = this.schoolService.getSchools();
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   displayedColumns: string[] = ['select', 'nom_etablissement', 'code_uai'];
-  dataSource = new MatTableDataSource<School>(this.schools);
+  dataSource = new MatTableDataSource<School>([]);
   selection = new SelectionModel<any>(true, []);
 
   applyFilter(filterValue: string) {
@@ -32,10 +31,9 @@ export class SchoolsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.schools$.pipe(tap(s => console.log(s)))
-    .subscribe(
-      s => this.schools = s
-    );
+    this.dataSource.paginator = this.paginator;
+    this.schoolService.getSchools()
+      .subscribe(schools => this.dataSource.data = schools);
   }
 
   isAllSelected() {

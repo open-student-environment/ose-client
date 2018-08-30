@@ -14,6 +14,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { GraphService } from './services/graph.service';
 import { SchoolsComponent } from './schools/schools.component';
@@ -32,7 +33,7 @@ import { SchoolsComponent } from './schools/schools.component';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTableModule, MatCheckboxModule,
+    MatTableModule, MatCheckboxModule, MatPaginatorModule,
     MatFormFieldModule, MatInputModule
   ],
   providers: [
