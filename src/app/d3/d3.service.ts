@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as d3 from 'd3';
 import { ForceDirectedGraph, Link, Node } from './models';
-import { DraggableDirective } from './directives/draggable.directive';
 
 
 @Injectable()
@@ -62,5 +61,5 @@ export class D3Service {
    getForceDirectedGraph(nodes, links, options: { width, height} ) {
     const graph = new ForceDirectedGraph(nodes, links, options);
     return graph;
-}
+  }
 }

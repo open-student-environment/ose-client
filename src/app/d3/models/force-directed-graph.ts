@@ -70,4 +70,12 @@ export class ForceDirectedGraph {
         /** Restarting the simulation internal timer */
         this.simulation.restart();
     }
+
+    stopSimulation() {
+        this.simulation.stop();
+    }
+
+    restartSimulation() {
+        this.simulation.restart();
+    }
 }

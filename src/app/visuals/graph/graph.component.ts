@@ -44,4 +44,12 @@ export class GraphComponent implements OnInit {
       height: window.innerHeight
     };
   }
+
+  stopSimulation() {
+    this.graph.stopSimulation();
+  }
+
+  restartSimulation() {
+    this.graph.restartSimulation();
+  }
 }

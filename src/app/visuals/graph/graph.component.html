@@ -1,3 +1,4 @@
+<button (click)="stopSimulation()">STOP</button><button (click)="restartSimulation()">RESTART</button> 
 <svg #svg appZoomable [attr.width]="_options.width" [attr.height]="_options.height">
   <g [zoomableOf]="svg">
     <g linkVisual [link]="link" *ngFor="let link of links"></g>

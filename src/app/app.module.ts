@@ -8,8 +8,13 @@ import { LinkVisualComponent } from './visuals/shared/link-visual.component';
 import { D3Service } from './d3/d3.service';
 import { DraggableDirective, ZoomableDirective } from './d3/directives';
 
-import { GraphService } from './services/graph.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+import { GraphService } from './services/graph.service';
+import { SchoolsComponent } from './schools/schools.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +23,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     NodeVisualComponent,
     LinkVisualComponent,
     DraggableDirective,
-    ZoomableDirective
+    ZoomableDirective,
+    SchoolsComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule, MatCheckboxModule
   ],
   providers: [
     HttpClient,
