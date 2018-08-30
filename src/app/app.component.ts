@@ -40,13 +40,18 @@ const ADJ = {
 })
 export class AppComponent implements OnInit {
 
-  adjancy: any ;
+  adjacency$ = this.graphService.adjacency$;
+  filteredAdjacency$ = this.graphService.filteredAdjacency$;
 
   constructor(
     private graphService: GraphService
   ) { }
 
   ngOnInit() {
-    this.graphService.getAdjancy().subscribe(adjancy => this.adjancy = adjancy);
+    this.graphService.getAdjacency().subscribe();
+  }
+
+  filterAdjacency() {
+    this.graphService.filterAdjacency(['0700866L']);
   }
 }

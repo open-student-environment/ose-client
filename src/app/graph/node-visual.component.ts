@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Node } from '../../d3/models';
+import { Node } from '../d3/models';
 
 @Component({
   selector: '[nodeVisual]',

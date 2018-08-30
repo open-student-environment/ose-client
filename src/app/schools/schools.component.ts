@@ -18,7 +18,8 @@ export class SchoolsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['select', 'nom_etablissement', 'code_uai'];
+  displayedColumns: string[] = ['select', 'numero_uai', 'appellation_officielle', 'adresse',
+    'code_postal', 'commune', 'departement', 'academie'];
   dataSource = new MatTableDataSource<School>([]);
   selection = new SelectionModel<any>(true, []);
 

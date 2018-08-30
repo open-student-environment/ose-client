@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
-import { D3Service } from '../../d3/d3.service';
-import { ForceDirectedGraph, Node, Link } from '../../d3/models';
+import { D3Service } from '../d3/d3.service';
+import { ForceDirectedGraph, Node, Link } from '../d3/models';
 
 @Component({
   selector: 'app-graph',
@@ -20,6 +20,9 @@ export class GraphComponent implements OnInit {
   constructor(private d3Service: D3Service) { }
 
   ngOnInit() {
+  }
+
+  launchSimulation() {
     const nodes = Object.keys(this.adjancy).map(i => new Node(i));
     const invnodes = {};
     for (const node of nodes) {
@@ -40,8 +43,8 @@ export class GraphComponent implements OnInit {
 
   get options() {
     return this._options = {
-      width: window.innerWidth,
-      height: window.innerHeight
+      width: window.innerWidth - 100,
+      height: window.innerHeight - 100
     };
   }
 
