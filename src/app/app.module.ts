@@ -11,6 +11,8 @@ import { DraggableDirective, ZoomableDirective } from './d3/directives';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { GraphService } from './services/graph.service';
@@ -24,13 +26,14 @@ import { SchoolsComponent } from './schools/schools.component';
     LinkVisualComponent,
     DraggableDirective,
     ZoomableDirective,
-    SchoolsComponent
+    SchoolsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTableModule, MatCheckboxModule
+    MatTableModule, MatCheckboxModule,
+    MatFormFieldModule, MatInputModule
   ],
   providers: [
     HttpClient,

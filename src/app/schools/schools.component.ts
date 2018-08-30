@@ -23,6 +23,10 @@ export class SchoolsComponent implements OnInit {
   dataSource = new MatTableDataSource<School>(this.schools);
   selection = new SelectionModel<any>(true, []);
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   constructor(
     private schoolService: SchoolsService
   ) { }
