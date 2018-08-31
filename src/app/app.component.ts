@@ -52,6 +52,6 @@ export class AppComponent implements OnInit {
   }
 
   filterAdjacency() {
-    this.graphService.filterAdjacency(['0700866L']);
+    this.graphService.filterAdjacency(['0700866L', '0680111B']);
   }
 }

@@ -22,8 +22,18 @@ export class GraphComponent implements OnInit {
   ngOnInit() {
   }
 
+  getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   launchSimulation() {
     const nodes = Object.keys(this.adjancy).map(i => new Node(i));
+    nodes.map(node => node.color = this.getRandomColor());
     const invnodes = {};
     for (const node of nodes) {
       invnodes[node.id] = node;
