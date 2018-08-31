@@ -3,6 +3,3 @@
 <app-graph [adjancy]="filteredAdjacency$ | async"></app-graph>
 
 <button (click)="filterAdjacency()">FILTER</button>
-
-
-{{ filteredAdjacency$ | async | json }}

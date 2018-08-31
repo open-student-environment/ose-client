@@ -1,11 +1,15 @@
-<button (click)="launchSimulation()">LAUNCH</button>
-<button (click)="stopSimulation()">STOP</button>
-<button (click)="restartSimulation()">RESTART</button> 
+<div class="container">
+  <svg class="svg-container" #svg appZoomable>
+    <g [zoomableOf]="svg">
+      <g linkVisual [link]="link" *ngFor="let link of links"></g>
+      <g nodeVisual [node]="node" *ngFor="let node of nodes" 
+      [draggableNode]="node" [draggableInGraph]="graph"></g>
+    </g>
+  </svg>
 
-<svg #svg appZoomable [attr.width]="_options.width" [attr.height]="_options.height">
-  <g [zoomableOf]="svg">
-    <g linkVisual [link]="link" *ngFor="let link of links"></g>
-    <g nodeVisual [node]="node" *ngFor="let node of nodes" 
-    [draggableNode]="node" [draggableInGraph]="graph"></g>
-  </g>
-</svg>
+  <div class="controls">
+      <button (click)="launchSimulation()">LAUNCH</button>
+      <button (click)="stopSimulation()">STOP</button>
+      <button (click)="restartSimulation()">RESTART</button> 
+  </div>
+</div>
