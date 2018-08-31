@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 
-import { Observable, of, from } from 'rxjs';
+import { Observable, of, from, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { School } from '../models/school';
@@ -50,7 +50,13 @@ export class SchoolsComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
+
   remove(item: string) {
     this.selection.deselect(item);
+  }
+
+  setSelectedSchools() {
+    this.selection.selected.map( item => console.log(item.numero_uai));
+    this.schoolService.setSelectedSchools(this.selection.selected.map( item => item.numero_uai));
   }
 }
