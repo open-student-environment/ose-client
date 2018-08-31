@@ -1,1 +1,8 @@
-<app-graph [nodes]="nodes" [links]="links"></app-graph>
+<app-schools></app-schools>
+
+<app-graph [adjancy]="filteredAdjacency$ | async"></app-graph>
+
+<button (click)="filterAdjacency()">FILTER</button>
+
+
+{{ filteredAdjacency$ | async | json }}

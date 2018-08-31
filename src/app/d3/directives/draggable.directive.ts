@@ -3,7 +3,7 @@ import { Node, ForceDirectedGraph } from '../models';
 import { D3Service } from '../d3.service';
 
 @Directive({
-    selector: '[appDraggable]'
+    selector: '[draggableNode]'
 })
 export class DraggableDirective implements OnInit {
     @Input('draggableNode') draggableNode: Node;

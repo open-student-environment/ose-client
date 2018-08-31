@@ -58,8 +58,8 @@ export class D3Service {
         .on('start', started));
     }
 
-   getForceDirectedGraph(nodes: Node[], links: Link[], options: { width, height} ) {
+   getForceDirectedGraph(nodes, links, options: { width, height} ) {
     const graph = new ForceDirectedGraph(nodes, links, options);
     return graph;
-}
+  }
 }

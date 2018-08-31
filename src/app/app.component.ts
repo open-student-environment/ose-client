@@ -1,34 +1,57 @@
-import { Component } from '@angular/core';
-import { Node, Link } from './d3/models';
+import { Component, OnInit } from '@angular/core';
+
+import { tap } from 'rxjs/operators';
+
+import { GraphService } from './services/graph.service';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+
+const ADJ = {
+  '1': [ 7,  2,  6],
+  '2': [ 8,  3,  1],
+  '3': [ 4,  2,  9],
+  '4': [10,  3,  5],
+  '5': [ 6,  4, 11],
+  '6': [ 1,  5, 12],
+  '7': [ 1, 20, 13],
+  '8': [ 2, 14, 21],
+  '9': [ 3, 22, 15],
+ '10': [ 4, 16, 23],
+ '11': [ 5, 17, 24],
+ '12': [ 6, 19, 18],
+ '13': [ 7, 19],
+ '14': [20,  8],
+ '15': [21,  9],
+ '16': [22, 10],
+ '17': [23, 11],
+ '18': [24, 12],
+ '19': [12, 13],
+ '20': [14,  7],
+ '21': [ 8, 15],
+ '22': [ 9, 16],
+ '23': [10, 17],
+ '24': [11, 18]
+};
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+export class AppComponent implements OnInit {
 
-export class AppComponent {
-  nodes: Node[] = [];
-  links: Link[] = [];
+  adjacency$ = this.graphService.adjacency$;
+  filteredAdjacency$ = this.graphService.filteredAdjacency$;
 
-  constructor() {
-    const N = 1,
-          getIndex = number => number - 1;
+  constructor(
+    private graphService: GraphService
+  ) { }
 
-    /** constructing the nodes array */
-    for (let i = 1; i <= N; i++) {
-      this.nodes.push({id: i.toString()});
-    }
+  ngOnInit() {
+    this.graphService.getAdjacency().subscribe();
+  }
 
-    for (let i = 1; i <= N; i++) {
-      for (let m = 2; i * m <= N; m++) {
-        /** increasing connections toll on connecting nodes */
-        this.nodes[getIndex(i)].linkCount++;
-        this.nodes[getIndex(i * m)].linkCount++;
-
-        /** connecting the nodes before starting the simulation */
-        this.links.push(new Link(i, i * m));
-      }
-    }
+  filterAdjacency() {
+    this.graphService.filterAdjacency(['0700866L']);
   }
 }

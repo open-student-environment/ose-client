@@ -1,0 +1,14 @@
+.search-result {
+  width: 80%;
+  margin: 50px 0 0 10%;
+}
+
+table {
+  width: 100%;
+  position: center;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
