@@ -16,12 +16,13 @@ import { SchoolsService } from '../services/schools.service';
 })
 export class SchoolsComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
 
   displayedColumns: string[] = ['select', 'numero_uai', 'appellation_officielle', 'adresse',
     'code_postal', 'commune', 'departement', 'academie'];
   dataSource = new MatTableDataSource<School>([]);
   selection = new SelectionModel<any>(true, []);
+  toggleTable = false;
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -49,4 +50,7 @@ export class SchoolsComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
+  remove(item: string) {
+    this.selection.deselect(item);
+  }
 }
