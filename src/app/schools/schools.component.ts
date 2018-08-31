@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { SelectionModel, DataSource } from '@angular/cdk/collections';
-
-import { Observable, of, from, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { SelectionModel } from '@angular/cdk/collections';
 
 import { School } from '../models/school';
 import { SchoolsService } from '../services/schools.service';
+import { GraphService } from '../services/graph.service';
 
 
 @Component({
@@ -17,6 +15,7 @@ import { SchoolsService } from '../services/schools.service';
 export class SchoolsComponent implements OnInit {
 
   @ViewChild('paginator') paginator: MatPaginator;
+  @Output() launch = new EventEmitter<string>();
 
   displayedColumns: string[] = ['select', 'numero_uai', 'appellation_officielle', 'adresse',
     'code_postal', 'commune', 'departement', 'academie'];
@@ -29,7 +28,8 @@ export class SchoolsComponent implements OnInit {
   }
 
   constructor(
-    private schoolService: SchoolsService
+    private schoolService: SchoolsService,
+    private graphService: GraphService
   ) { }
 
   ngOnInit() {
@@ -50,13 +50,17 @@ export class SchoolsComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
+  onChange($event) {
+    this.graphService.filterAdjacency(
+      this.selection.selected.map( item => item.numero_uai));
+  }
 
   remove(item: string) {
     this.selection.deselect(item);
   }
 
-  setSelectedSchools() {
-    this.selection.selected.map( item => console.log(item.numero_uai));
-    this.schoolService.setSelectedSchools(this.selection.selected.map( item => item.numero_uai));
+  onLaunch(e: string) {
+    console.log('go');
+    this.launch.emit(e);
   }
 }

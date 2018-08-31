@@ -20,7 +20,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { GraphService } from './services/graph.service';
 import { SchoolsComponent } from './schools/schools.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { MatIconModule } from '@angular/material';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTableModule, MatCheckboxModule, MatPaginatorModule,
+    MatTableModule, MatCheckboxModule, MatPaginatorModule, MatButtonModule,
     MatFormFieldModule, MatInputModule, MatChipsModule, MatIconModule
   ],
   providers: [
