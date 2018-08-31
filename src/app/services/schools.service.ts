@@ -16,10 +16,8 @@ export class SchoolsService {
   constructor(private httpClient: HttpClient) { }
 
   getSchools(): Observable<School[]> {
-    const url = 'assets/etab.json';
-    return this.httpClient.get<School[]>(url).pipe(
-      map(res => res)
-    );
+    const url = 'http://localhost:5000/etab';
+    return this.httpClient.get<School[]>(url);
   }
 
   setSelectedSchools(values: any) {
