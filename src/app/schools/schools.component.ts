@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { SelectionModel, DataSource } from '@angular/cdk/collections';
-
-import { Observable, of, from } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { SelectionModel } from '@angular/cdk/collections';
 
 import { School } from '../models/school';
 import { SchoolsService } from '../services/schools.service';
+import { GraphService } from '../services/graph.service';
 
 
 @Component({
@@ -16,19 +14,22 @@ import { SchoolsService } from '../services/schools.service';
 })
 export class SchoolsComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator: MatPaginator;
+  @Output() launch = new EventEmitter<string>();
 
   displayedColumns: string[] = ['select', 'numero_uai', 'appellation_officielle', 'adresse',
     'code_postal', 'commune', 'departement', 'academie'];
   dataSource = new MatTableDataSource<School>([]);
   selection = new SelectionModel<any>(true, []);
+  toggleTable = false;
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   constructor(
-    private schoolService: SchoolsService
+    private schoolService: SchoolsService,
+    private graphService: GraphService
   ) { }
 
   ngOnInit() {
@@ -49,4 +50,17 @@ export class SchoolsComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
+  onChange($event) {
+    this.graphService.filterAdjacency(
+      this.selection.selected.map( item => item.numero_uai));
+  }
+
+  remove(item: string) {
+    this.selection.deselect(item);
+  }
+
+  onLaunch(e: string) {
+    console.log('go');
+    this.launch.emit(e);
+  }
 }

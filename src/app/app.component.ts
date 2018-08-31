@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { tap } from 'rxjs/operators';
 
 import { GraphService } from './services/graph.service';
+import { SchoolsService } from './services/schools.service';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+import { GraphComponent } from './graph/graph.component';
 
 const ADJ = {
   '1': [ 7,  2,  6],
@@ -40,11 +42,14 @@ const ADJ = {
 })
 export class AppComponent implements OnInit {
 
+  @ViewChild(GraphComponent) graph: GraphComponent;
+
   adjacency$ = this.graphService.adjacency$;
   filteredAdjacency$ = this.graphService.filteredAdjacency$;
 
   constructor(
-    private graphService: GraphService
+    private graphService: GraphService,
+    private schoolService: SchoolsService
   ) { }
 
   ngOnInit() {
@@ -52,6 +57,11 @@ export class AppComponent implements OnInit {
   }
 
   filterAdjacency() {
-    this.graphService.filterAdjacency(['0700866L', '0680111B']);
+    this.graphService.filterAdjacency(this.schoolService.getSelectedSchools());
+  }
+
+  launchSimulation(e: string) {
+    this.graph.launchSimulation();
+    console.log(e);
   }
 }

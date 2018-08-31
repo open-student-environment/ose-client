@@ -1,5 +1,3 @@
-<app-schools></app-schools>
+<app-schools (launch)="launchSimulation($event)"></app-schools>
 
 <app-graph [adjancy]="filteredAdjacency$ | async"></app-graph>
-
-<button (click)="filterAdjacency()">FILTER</button>

@@ -39,7 +39,6 @@ export class GraphService {
     let q: any = [root];
     let parent: any;
     while (parent = q.pop()) {
-      console.log(parent);
       const children = adj[parent];
       fAdj[parent] = children;
       q = q.concat(children);
