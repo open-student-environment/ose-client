@@ -11,6 +11,8 @@ import { School } from '../models/school';
 })
 export class SchoolsService {
 
+  private selectedSchools: any = [];
+
   constructor(private httpClient: HttpClient) { }
 
   getSchools(): Observable<School[]> {
@@ -18,5 +20,13 @@ export class SchoolsService {
     return this.httpClient.get<School[]>(url).pipe(
       map(res => res)
     );
+  }
+
+  setSelectedSchools(values: any) {
+    this.selectedSchools = values;
+  }
+
+  getSelectedSchools() {
+    return this.selectedSchools;
   }
 }

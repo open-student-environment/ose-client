@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
 import { GraphService } from './services/graph.service';
+import { SchoolsService } from './services/schools.service';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 
 const ADJ = {
@@ -42,9 +43,11 @@ export class AppComponent implements OnInit {
 
   adjacency$ = this.graphService.adjacency$;
   filteredAdjacency$ = this.graphService.filteredAdjacency$;
+  // selectedSchools: any = [];
 
   constructor(
-    private graphService: GraphService
+    private graphService: GraphService,
+    private schoolService: SchoolsService
   ) { }
 
   ngOnInit() {
@@ -52,6 +55,6 @@ export class AppComponent implements OnInit {
   }
 
   filterAdjacency() {
-    this.graphService.filterAdjacency(['0700866L']);
+    this.graphService.filterAdjacency(this.schoolService.getSelectedSchools());
   }
 }
