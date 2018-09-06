@@ -10,6 +10,7 @@ import { ForceDirectedGraph, Node, Link } from '../d3/models';
 export class GraphComponent implements OnInit {
 
   @Input() adjancy: any;
+  @Input() nodeTypes: any;
 
   nodes: Node[];
   links: Link[];
@@ -31,8 +32,20 @@ export class GraphComponent implements OnInit {
     return color;
   }
 
+  getColor(e) {
+    switch (e) {
+      case 'user:enseignant': { return 'orange'; }
+      case 'user:eleve': { return 'purple'; }
+      case 'school': { return 'blue'; }
+      case 'groupe': { return 'groupe'; }
+      default: {return 'white'; }
+    }
+  }
+
   launchSimulation() {
-    const nodes = Object.keys(this.adjancy).map(i => new Node(i));
+
+    const nodes = this.nodeTypes.array
+      .map(element => new Node(element['name'], this.getColor(element['type'])));
     nodes.map(node => node.color = this.getRandomColor());
     const invnodes = {};
     for (const node of nodes) {

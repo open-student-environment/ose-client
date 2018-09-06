@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild(GraphComponent) graph: GraphComponent;
 
+  nodes$ = this.graphService.nodes$;
   adjacency$ = this.graphService.adjacency$;
   filteredAdjacency$ = this.graphService.filteredAdjacency$;
 
@@ -54,6 +55,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.graphService.getAdjacency().subscribe();
+    this.graphService.getNodes().subscribe();
   }
 
   filterAdjacency() {

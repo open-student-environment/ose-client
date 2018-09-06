@@ -10,6 +10,9 @@ import { tap } from 'rxjs/operators';
 })
 export class GraphService {
 
+  nodes = [];
+  nodes$ = new BehaviorSubject<any>(this.nodes);
+
   adjacency = {};
   adjacency$ = new BehaviorSubject<any>(this.adjacency);
 
@@ -19,6 +22,15 @@ export class GraphService {
   constructor(
     private httpClient: HttpClient
   ) { }
+
+  getNodes() {
+    const url = 'http://localhost:5000/nodes';
+    return this.httpClient.get<any[]>(url).pipe(
+      tap(nodes => console.log(nodes)),
+      tap(nodes => this.nodes = nodes),
+      tap(nodes => this.nodes$.next(nodes))
+    );
+  }
 
   getAdjacency() {
     const url = 'http://localhost:5000/adjancy';
