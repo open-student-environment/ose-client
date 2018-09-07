@@ -44,9 +44,8 @@ export class GraphComponent implements OnInit {
 
   launchSimulation() {
 
-    const nodes = this.nodeTypes.array
-      .map(element => new Node(element['name'], this.getColor(element['type'])));
-    nodes.map(node => node.color = this.getRandomColor());
+    const nodes = this.nodeTypes
+      .map(element => new Node(element.name, this.getColor(element.type)));
     const invnodes = {};
     for (const node of nodes) {
       invnodes[node.id] = node;
