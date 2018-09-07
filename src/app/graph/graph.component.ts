@@ -37,15 +37,20 @@ export class GraphComponent implements OnInit {
       case 'user:enseignant': { return 'orange'; }
       case 'user:eleve': { return 'purple'; }
       case 'school': { return 'blue'; }
-      case 'groupe': { return 'groupe'; }
-      default: {return 'white'; }
+      case 'groupe': { return 'green'; }
+      case 'classe': { return 'red'; }
+      default: {return 'black'; }
     }
   }
 
   launchSimulation() {
 
-    const nodes = this.nodeTypes
-      .map(element => new Node(element.name, this.getColor(element.type)));
+    const nodeColors = {};
+    this.nodeTypes.forEach(element => {
+      nodeColors[element.name] = this.getColor(element.type);
+    });
+    const nodes = Object.keys(this.adjancy)
+      .map(node => new Node(node, nodeColors[node]));
     const invnodes = {};
     for (const node of nodes) {
       invnodes[node.id] = node;
