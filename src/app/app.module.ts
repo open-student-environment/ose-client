@@ -21,6 +21,7 @@ import { GraphService } from './services/graph.service';
 import { SchoolsComponent } from './schools/schools.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { MatIconModule, MatButtonModule } from '@angular/material';
+import { ChartsComponent } from './charts/charts.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatIconModule, MatButtonModule } from '@angular/material';
     ZoomableDirective,
     SchoolsComponent,
     ClickOutsideDirective,
+    ChartsComponent,
   ],
   imports: [
     BrowserModule,
