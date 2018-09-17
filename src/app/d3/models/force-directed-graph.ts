@@ -2,10 +2,11 @@ import { EventEmitter } from '@angular/core';
 import { Link } from './link';
 import { Node } from './node';
 import * as d3 from 'd3';
+import { forceX } from 'd3';
 
 const FORCES = {
     LINKS: 20 / 50,
-    COLLISION: 1,
+    COLLISION: 10,
     CHARGE: -1000
 };
 
@@ -53,7 +54,9 @@ export class ForceDirectedGraph {
 
             // Creating the force simulation and defining the charges
             this.simulation = d3.forceSimulation()
-                .force('charge', d3.forceManyBody().strength(FORCES.CHARGE));
+                .force('charge', d3.forceManyBody().strength(FORCES.CHARGE))
+                .force('forceX', d3.forceX(options.width / 2).strength(0.1))
+                .force('forceY', d3.forceY(options.height / 2).strength(0.1));
 
             // Connecting the d3 ticker to an angular event emitter
             this.simulation.on('tick', function () {
