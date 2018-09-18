@@ -1,0 +1,17 @@
+<div class="indicators" *ngFor="let row of [1, 2, 3]">
+  <div class="indicator">
+    <div class="title">GRIT</div>
+    <ngx-charts-bar-vertical
+      [scheme]="{domain: ['#CCCCCC']}"
+      [results]="bars">
+    </ngx-charts-bar-vertical>
+  </div>
+  <div class="indicator">
+    <div class="title">AUTONOMY</div>
+      <ngx-charts-line-chart
+        [scheme]="{domain: ['#CCCCCC']}"
+        [curve]="curve"
+        [results]="line">
+      </ngx-charts-line-chart>
+    </div>
+</div>

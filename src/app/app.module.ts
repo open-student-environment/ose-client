@@ -7,24 +7,25 @@ import { NodeVisualComponent } from './graph/node-visual.component';
 import { LinkVisualComponent } from './graph/link-visual.component';
 import { D3Service } from './d3/d3.service';
 import { DraggableDirective, ZoomableDirective } from './d3/directives';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatChipsModule } from '@angular/material/chips';
 
 import { GraphService } from './services/graph.service';
 import { SchoolsComponent } from './schools/schools.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
-import { MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { ChartsComponent } from './charts/charts.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LayoutComponent } from './layout/layout.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { MaterialModule } from './material/material.module';
+import { TabsComponent } from './profile/tabs/tabs.component';
+import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
+import { ProfileSummaryComponent } from './profile/profile-summary/profile-summary.component';
+import { ActivityComponent } from './profile/tabs/activity/activity.component';
+import { IndicatorsComponent } from './profile/tabs/indicators/indicators.component';
+import { GradesComponent } from './profile/tabs/grades/grades.component';
 
 @NgModule({
   declarations: [
@@ -39,16 +40,21 @@ import { AppRoutingModule } from './/app-routing.module';
     ChartsComponent,
     ProfileComponent,
     LayoutComponent,
+    TabsComponent,
+    ProfileDetailsComponent,
+    ProfileSummaryComponent,
+    ActivityComponent,
+    IndicatorsComponent,
+    GradesComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTableModule, MatCheckboxModule, MatPaginatorModule, MatButtonModule,
-    MatFormFieldModule, MatInputModule, MatChipsModule, MatIconModule,
-    MatToolbarModule, MatSidenavModule, MatListModule,
     AppRoutingModule,
+    MaterialModule,
+    NgxChartsModule
   ],
   providers: [
     HttpClient,

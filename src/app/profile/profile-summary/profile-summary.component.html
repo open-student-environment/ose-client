@@ -1,0 +1,14 @@
+<div class="summary-wrapper">
+  <div class="indicators">
+    <div class="indicator" *ngFor="let indicator of indicators">
+      <div class="name"> {{ indicator.name }}</div>
+      <div class="score">{{ indicator.score }}</div>
+    </div>
+  </div>
+
+  <div class="summary-graph">
+      <ngx-charts-polar-chart
+        [results]="data">
+      </ngx-charts-polar-chart>
+  </div>
+</div>

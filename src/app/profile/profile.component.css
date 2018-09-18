@@ -1,0 +1,14 @@
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.tab-content {
+  flex: 1;
+}
