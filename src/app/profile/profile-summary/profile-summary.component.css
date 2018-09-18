@@ -1,0 +1,28 @@
+.summary-wrapper {
+  display: flex;
+
+}
+.indicators {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  margin: 35px;
+  width: 160px;
+}
+
+.indicator {
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 0 0 0;
+}
+
+.summary-graph {
+  width: 300px;
+  height: 300px;
+}
+
