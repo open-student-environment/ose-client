@@ -1,15 +1,15 @@
 <div class="details-wrapper">
     <div class="avatar">
-      <img src="" alt="">
+      <img src="{{md5Hash(agent.id)}}" alt="">
     </div>
     <div class="details">
       <div class="name">
-        Maxime Dupont
+        {{ agent.name }}
       </div>
       <div class="address">
-        6 ème <br>
-        Collège Jean Jaurès <br>
-        Paris <br>
+        {{ agent.grade }} <br>
+        {{ agent.school }} <br>
+        {{ agent.location }} <br>
       </div>
     </div>
   </div>

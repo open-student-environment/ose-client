@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+
+import { Node } from '../d3/models';
 
 
 @Injectable({
@@ -30,6 +33,25 @@ export class GraphService {
       tap(nodes => this.nodes = nodes),
       tap(nodes => this.nodes$.next(nodes))
     );
+  }
+
+  getSummary(node: Node) {
+    const url = environment.apiUrl + `nodes/parameters`;
+    const params = new HttpParams()
+      .set('node-name', node.id);
+    return this.httpClient.get(url, {params: params});
+  }
+
+  getActivity(node: Node) {
+    const url = environment.apiUrl + `nodes/activity`;
+    const params = new HttpParams()
+      .set('node-name', node.id);
+    return this.httpClient.get(url, {params: params});
+  }
+
+  getParameters(node: Node = null) {
+    const url = environment.apiUrl + 'model/parameters';
+    return this.httpClient.get(url);
   }
 
   getAdjacency() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as shape from 'd3-shape';
+import { GraphService } from '../../../services/graph.service';
 
 @Component({
   selector: 'app-indicators',
@@ -10,15 +11,20 @@ export class IndicatorsComponent implements OnInit {
 
   bars = Array<any>(20);
   line = line;
-  curve = shape.curveBasis;
+  curve = shape.curveNatural;
 
-  constructor() { }
+  constructor(
+    private graphService: GraphService
+  ) { }
 
   ngOnInit() {
     for (let i = 0; i < this.bars.length; i++) {
       this.bars[i] = {name: i, value: i % 10};
     }
-    console.log(this.bars);
+    this.graphService.getParameters()
+      .subscribe((activity: Array<any>) => {
+        // const data = activity.map(item => ({y: 1, x: item.timestamp}));
+      });
   }
 }
 

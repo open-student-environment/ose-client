@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatGridTile } from '@angular/material';
+import { GraphService } from '../../services/graph.service';
 
 @Component({
   selector: 'app-profile-summary',
@@ -7,96 +8,22 @@ import { MatGridTile } from '@angular/material';
   styleUrls: ['./profile-summary.component.css']
 })
 export class ProfileSummaryComponent implements OnInit {
-  data = data;
+  data: any;
 
-  indicators = [
-  {name: 'GRIT', score: .98},
-  {name: 'GRIT', score: .98},
-  {name: 'GRIT', score: .98},
-  {name: 'GRIT', score: .98},
-  {name: 'GRIT', score: .98},
-  {name: 'GRIT', score: .98},
-  ];
+  indicators = [];
 
-  constructor() { }
+  constructor(
+    private graphService: GraphService
+  ) { }
 
   ngOnInit() {
+    const node = {id: '55db4891-9ea6-4c5d-b55d-2063f815d90d'};
+    this.graphService.getSummary(node)
+      .subscribe((series: any) => {
+        this.data = [series];
+        for (const indicator of series.series) {
+          this.indicators.push(indicator);
+        }
+      });
   }
-
 }
-
-const data = [
-  {
-    'name': 'Grit',
-    'series': [
-      {
-        'value': 5925,
-        'name': '2016-09-17T15:41:42.590Z'
-      },
-      {
-        'value': 6411,
-        'name': '2016-09-23T22:15:03.077Z'
-      },
-      {
-        'value': 3428,
-        'name': '2016-09-12T23:27:09.810Z'
-      },
-      {
-        'value': 5639,
-        'name': '2016-09-18T01:10:00.854Z'
-      },
-      {
-        'value': 5514,
-        'name': '2016-09-13T08:57:07.389Z'
-      }
-    ],
-  }, {
-    'name': 'Autonomy',
-    'series': [
-      {
-        'value': 5925,
-        'name': '2016-09-17T15:41:42.590Z'
-      },
-      {
-        'value': 6411,
-        'name': '2016-09-23T22:15:03.077Z'
-      },
-      {
-        'value': 3428,
-        'name': '2016-09-12T23:27:09.810Z'
-      },
-      {
-        'value': 5639,
-        'name': '2016-09-18T01:10:00.854Z'
-      },
-      {
-        'value': 5514,
-        'name': '2016-09-13T08:57:07.389Z'
-      }
-    ],
-  }, {
-    'name': 'Perseverance',
-    'series': [
-      {
-        'value': 5925,
-        'name': '2016-09-17T15:41:42.590Z'
-      },
-      {
-        'value': 6411,
-        'name': '2016-09-23T22:15:03.077Z'
-      },
-      {
-        'value': 3428,
-        'name': '2016-09-12T23:27:09.810Z'
-      },
-      {
-        'value': 5639,
-        'name': '2016-09-18T01:10:00.854Z'
-      },
-      {
-        'value': 5514,
-        'name': '2016-09-13T08:57:07.389Z'
-      }
-    ],
-  }
-];

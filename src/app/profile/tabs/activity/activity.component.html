@@ -1,9 +1,3 @@
-<div class="activity">
-  <div class="chart-wrapper">
-    <ngx-charts-bar-vertical
-      [scheme]="{domain: ['#CCCCCC']}"
-      [results]="bars"
-      [xAxis]="true">
-    </ngx-charts-bar-vertical>
-  </div>
-</div>
+<!-- <div class="activity"> -->
+  <plotly-plot [data]="graph.data"></plotly-plot>
+<!-- </div> -->
