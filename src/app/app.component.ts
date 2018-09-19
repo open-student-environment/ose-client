@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.graphService.getAdjacency().subscribe();
-    this.graphService.getNodes().subscribe();
+    // this.graphService.getAdjacency().subscribe();
+    // this.graphService.getNodes().subscribe();
   }
 
   filterAdjacency() {
@@ -33,6 +33,5 @@ export class AppComponent implements OnInit {
 
   launchSimulation(e: string) {
     this.graph.launchSimulation();
-    console.log(e);
   }
 }

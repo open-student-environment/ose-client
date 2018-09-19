@@ -8,6 +8,8 @@ import { LinkVisualComponent } from './graph/link-visual.component';
 import { D3Service } from './d3/d3.service';
 import { DraggableDirective, ZoomableDirective } from './d3/directives';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { PlotlyModule } from 'angular-plotly.js';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +28,9 @@ import { ProfileSummaryComponent } from './profile/profile-summary/profile-summa
 import { ActivityComponent } from './profile/tabs/activity/activity.component';
 import { IndicatorsComponent } from './profile/tabs/indicators/indicators.component';
 import { GradesComponent } from './profile/tabs/grades/grades.component';
+import { HomeComponent } from './home/home.component';
+import { RightSidebarComponent } from './home/right-sidebar/right-sidebar.component';
+import { LeftSidebarComponent } from './home/left-sidebar/left-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,9 @@ import { GradesComponent } from './profile/tabs/grades/grades.component';
     ActivityComponent,
     IndicatorsComponent,
     GradesComponent,
+    HomeComponent,
+    RightSidebarComponent,
+    LeftSidebarComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -54,7 +62,9 @@ import { GradesComponent } from './profile/tabs/grades/grades.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    NgxChartsModule
+    NgxChartsModule,
+    PlotlyModule,
+    NgbModule
   ],
   providers: [
     HttpClient,
