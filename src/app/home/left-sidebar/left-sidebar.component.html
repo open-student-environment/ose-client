@@ -1,0 +1,23 @@
+<div class="section">
+  <div class="section-header mat-elevation-z1">
+    Filters
+  </div>
+  <div class="chips-selected">
+    <mat-chip-list #chipList>
+      <mat-chip
+        [selectable]="true"
+        [removable]="true"
+        (removed)="remove(fruit)">
+        Jean Jaures
+      <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header mat-elevation-z1">
+    Filters
+  </div>
+  <app-dropdown></app-dropdown>
+</div>

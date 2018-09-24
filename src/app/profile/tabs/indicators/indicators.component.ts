@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as shape from 'd3-shape';
 import { GraphService } from '../../../services/graph.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-indicators',
@@ -9,21 +10,26 @@ import { GraphService } from '../../../services/graph.service';
 })
 export class IndicatorsComponent implements OnInit {
 
-  bars = Array<any>(20);
   line = line;
   curve = shape.curveNatural;
+  series: any[] = [];
 
   constructor(
     private graphService: GraphService
   ) { }
 
   ngOnInit() {
-    for (let i = 0; i < this.bars.length; i++) {
-      this.bars[i] = {name: i, value: i % 10};
-    }
+    console.log(line);
+
     this.graphService.getParameters()
       .subscribe((activity: Array<any>) => {
         // const data = activity.map(item => ({y: 1, x: item.timestamp}));
+      });
+    const node = {id: '55db4891-9ea6-4c5d-b55d-2063f815d90d'};
+    this.graphService.getParametersWithContext(node)
+      .subscribe((res: any) => {
+        this.series = res;
+        console.log(this.series);
       });
   }
 }
@@ -33,25 +39,25 @@ const line = [
     'name': 'Guadeloupe',
     'series': [
       {
-        'value': 6540,
-        'name': '2016-09-12T22:50:25.957Z'
+        'value': 1,
+        'name': 1.7
       },
       {
-        'value': 2345,
-        'name': '2016-09-16T22:36:49.132Z'
+        'value': 2,
+        'name': 3.8
       },
       {
-        'value': 5566,
-        'name': '2016-09-19T09:53:40.601Z'
+        'value': 1,
+        'name': 3
       },
       {
-        'value': 5711,
-        'name': '2016-09-23T02:47:47.156Z'
+        'value': 1,
+        'name': 4
       },
       {
-        'value': 4324,
-        'name': '2016-09-18T23:07:39.641Z'
+        'value': 1,
+        'name': 5
       }
     ]
   }
-]
+];

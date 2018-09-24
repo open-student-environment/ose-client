@@ -1,0 +1,27 @@
+<mat-sidenav-container>
+  <mat-sidenav class="left-sidebar mat-elevation-z2" opened mode="side">
+    <app-left-sidebar></app-left-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav class="right-sidebar mat-elevation-z2" opened mode="side" position="end">
+    <app-right-sidebar></app-right-sidebar>
+  </mat-sidenav>
+
+  <div class="graph-area">
+
+  <div class="search-wrapper">
+    <div class="search">
+      <app-search-schools></app-search-schools>
+    </div>
+    <div class="filters">
+      <app-dropdown class="filter" [label]="'Académie'" [choices]="['Lille', 'Paris', 'Marseille']"></app-dropdown>
+      <app-dropdown class="filter" [label]="'Niveau'" [choices]="['Collège', 'Lycée']"></app-dropdown>
+    </div>
+  </div>
+
+  <div class="svg-wrapper">
+    <app-graph [nodeTypes]="nodes" [adjancy]="adjacency" *ngIf="!(loading$ | async)"></app-graph>
+  </div>
+
+  </div>
+</mat-sidenav-container>

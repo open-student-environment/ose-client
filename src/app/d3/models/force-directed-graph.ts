@@ -24,61 +24,26 @@ export class ForceDirectedGraph {
         this.initSimulation(options);
     }
 
-    initNodes() {
-        if (!this.simulation) {
-            throw new Error('simulation was not initialized yet');
-        }
-
-        this.simulation.nodes(this.nodes);
-    }
-
-    initLinks() {
-        if (!this.simulation) {
-            throw new Error('simulation was not initialized yet');
-        }
-
-        // Initializing the links force simulation
-        this.simulation.force('links',
-            d3.forceLink(this.links)
-                .strength(FORCES.LINKS)
-        );
-    }
-
     initSimulation(options) {
         if (!options || !options.width || !options.height) {
             throw new Error('missing options when initializing simulation');
         }
         /** Creating the simulation */
         if (!this.simulation) {
-            const ticker = this.ticker;
 
             // Creating the force simulation and defining the charges
             this.simulation = d3.forceSimulation()
                 .force('charge', d3.forceManyBody().strength(FORCES.CHARGE))
                 .force('forceX', d3.forceX(options.width / 2).strength(0.1))
-                .force('forceY', d3.forceY(options.height / 2).strength(0.1));
+                .force('forceY', d3.forceY(options.height / 2).strength(0.1))
+                .force('centers', d3.forceCenter(options.width / 2, options.height / 2));
 
-            // Connecting the d3 ticker to an angular event emitter
-            this.simulation.on('tick', function () {
-                ticker.emit(this);
-            });
-
-            this.initNodes();
-            this.initLinks();
+            this.simulation.nodes(this.nodes);
+            this.simulation.force('links',
+            d3.forceLink(this.links)
+                .strength(FORCES.LINKS)
+            );
         }
-
-        /** Updating the central force of the simulation */
-        this.simulation.force('centers', d3.forceCenter(options.width / 2, options.height / 2));
-
-        /** Restarting the simulation internal timer */
-        this.simulation.restart();
-    }
-
-    stopSimulation() {
-        this.simulation.stop();
-    }
-
-    restartSimulation() {
         this.simulation.restart();
     }
 }

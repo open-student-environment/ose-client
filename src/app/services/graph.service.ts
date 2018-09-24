@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 import { Node } from '../d3/models';
@@ -27,12 +27,13 @@ export class GraphService {
   ) { }
 
   getNodes() {
-    const url = 'http://localhost:5000/nodes';
-    return this.httpClient.get<any[]>(url).pipe(
-      tap(nodes => console.log(nodes)),
-      tap(nodes => this.nodes = nodes),
-      tap(nodes => this.nodes$.next(nodes))
-    );
+    const url = 'http://f11777f0.ngrok.io/nodes';
+    return this.httpClient.get<any[]>(url);
+  }
+
+  getAdjacency() {
+    const url = 'http://f11777f0.ngrok.io/adjancy';
+    return this.httpClient.get(url);
   }
 
   getSummary(node: Node) {
@@ -54,12 +55,9 @@ export class GraphService {
     return this.httpClient.get(url);
   }
 
-  getAdjacency() {
-    const url = 'http://localhost:5000/adjancy';
-    return this.httpClient.get(url).pipe(
-      tap(adjacency => this.adjacency = adjacency),
-      tap(adjacency => this.adjacency$.next(adjacency))
-    );
+  getParametersWithContext(node: Node) {
+    const url = environment.apiUrl + `model/parameters?node-name=${node.id}&context=true`;
+    return this.httpClient.get(url);
   }
 
   filterAdjacency(uais: string[]) {

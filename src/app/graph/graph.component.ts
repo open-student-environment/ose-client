@@ -12,15 +12,17 @@ export class GraphComponent implements OnInit {
   @Input() adjancy: any;
   @Input() nodeTypes: any;
 
+  width = 1207;
+  height = 1000;
+
   nodes: Node[];
   links: Link[];
   graph: ForceDirectedGraph;
 
-  private _options: { width, height } = { width: 800, height: 600 };
-
   constructor(private d3Service: D3Service) { }
 
   ngOnInit() {
+    this.launchSimulation();
   }
 
   getRandomColor() {
@@ -64,22 +66,7 @@ export class GraphComponent implements OnInit {
     }
     this.nodes = nodes;
     this.links = links;
-    console.log(invnodes);
-    this.graph = this.d3Service.getForceDirectedGraph(nodes, links, this.options);
+    this.graph = this.d3Service.getForceDirectedGraph(nodes, links, {width: this.width, height: this.height});
   }
 
-  get options() {
-    return this._options = {
-      width: window.innerWidth - 100,
-      height: window.innerHeight - 100
-    };
-  }
-
-  stopSimulation() {
-    this.graph.stopSimulation();
-  }
-
-  restartSimulation() {
-    this.graph.restartSimulation();
-  }
 }
