@@ -60,7 +60,6 @@ export class SchoolsComponent implements OnInit {
   }
 
   onLaunch(e: string) {
-    console.log('go');
     this.launch.emit(e);
   }
 }

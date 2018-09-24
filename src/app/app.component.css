@@ -1,0 +1,20 @@
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-content-wrapper {
+  background-color: white;
+  flex: 1;
+  padding: 0 0 36px 0;
+}

@@ -1,0 +1,9 @@
+.section {
+  height: 200px;
+}
+
+.section-header {
+  padding: 16px;
+  margin-bottom: 16px;
+  border-top: 1px solid #DBDBDB;
+}

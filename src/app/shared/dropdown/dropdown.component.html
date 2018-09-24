@@ -1,0 +1,5 @@
+<mat-form-field>
+  <mat-select placeholder="{{ label }}" [formControl]="dropDownForm" multiple>
+    <mat-option *ngFor="let choice of choices" [value]="topping">{{ choice }}</mat-option>
+  </mat-select>
+</mat-form-field>

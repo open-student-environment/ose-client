@@ -1,20 +1,20 @@
-<div class="indicators" *ngFor="let row of [1, 2, 3]">
-  <div class="indicator">
-    <div class="title">GRIT</div>
+<div class="indicators" *ngFor="let s of series">
+  <div class="indicator" *ngIf="s.type === 'discrete'">
+    <div class="title">{{ s.name }}</div>
     <div class="graph-wrapper">
       <ngx-charts-bar-vertical
-        [scheme]="{domain: ['#CCCCCC']}"
-        [results]="bars">
+        [scheme]="{domain: ['#a8385d']}"
+        [results]="s.series">
       </ngx-charts-bar-vertical>
     </div>
   </div>
-  <div class="indicator">
-    <div class="title">AUTONOMY</div>
+  <div class="indicator" *ngIf="s.type === 'continuous'">
+    <div class="title">{{ s.name }}</div>
       <div class="graph-wrapper">
         <ngx-charts-line-chart
-          [scheme]="{domain: ['#CCCCCC']}"
+          [scheme]="{domain: ['#a8385d']}"
           [curve]="curve"
-          [results]="line">
+          [results]="[s]">
         </ngx-charts-line-chart>
       </div>
     </div>

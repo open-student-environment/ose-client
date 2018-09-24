@@ -9,7 +9,7 @@ import { D3Service } from './d3/d3.service';
 import { DraggableDirective, ZoomableDirective } from './d3/directives';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PlotlyModule } from 'angular-plotly.js';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +31,10 @@ import { GradesComponent } from './profile/tabs/grades/grades.component';
 import { HomeComponent } from './home/home.component';
 import { RightSidebarComponent } from './home/right-sidebar/right-sidebar.component';
 import { LeftSidebarComponent } from './home/left-sidebar/left-sidebar.component';
+import { DropdownComponent } from './shared/dropdown/dropdown.component';
+import { SearchSchoolsComponent } from './shared/search-schools/search-schools.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,8 @@ import { LeftSidebarComponent } from './home/left-sidebar/left-sidebar.component
     HomeComponent,
     RightSidebarComponent,
     LeftSidebarComponent,
+    DropdownComponent,
+    SearchSchoolsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -64,12 +70,16 @@ import { LeftSidebarComponent } from './home/left-sidebar/left-sidebar.component
     MaterialModule,
     NgxChartsModule,
     PlotlyModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [
     HttpClient,
     D3Service,
-    GraphService],
+    GraphService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

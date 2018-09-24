@@ -37,7 +37,6 @@ export class ActivityComponent implements OnInit {
         const x = data.map(e => e.x);
         const y = data.map(e => e.y);
         this.graph.data = [{x: x, y: y, mode: 'markers', type: 'scatter'}];
-        console.log(this.graph);
       });
   }
 

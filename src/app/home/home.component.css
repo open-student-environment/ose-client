@@ -1,0 +1,33 @@
+.left-sidebar {
+  width: 300px;
+}
+
+.right-sidebar {
+  width: 300px;
+}
+
+.graph-area {
+  position: relative;
+  padding: 24px;
+  background-color: white;
+  min-height: 100vh;
+}
+
+.search-wrapper {
+  display: flex;
+}
+.search {
+  width: 50%;
+}
+
+.filters {
+  padding: 14px 0 0 16px;
+}
+
+.filter {
+  padding-right: 16px;
+}
+.svg-wrapper {
+  width: 100%;
+  height: 1200px;
+}
