@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
@@ -8,7 +8,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 })
 export class ProfileDetailsComponent implements OnInit {
 
-  agent = {
+  @Input() node = {
     id: '55db4891-9ea6-4c5d-b55d-2063f815d90d',
     name: 'Maxime Dupont',
     grade: '6ème',

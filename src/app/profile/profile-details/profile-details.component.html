@@ -1,15 +1,15 @@
 <div class="details-wrapper">
     <div class="avatar">
-      <img src="{{md5Hash(agent.id)}}" alt="">
+      <img src="{{md5Hash(node.id)}}" alt="">
     </div>
     <div class="details">
       <div class="name">
-        {{ agent.name }}
+        {{ node.name }} <span class="node-id">({{ node.id }})</span>
       </div>
       <div class="address">
-        {{ agent.grade }} <br>
-        {{ agent.school }} <br>
-        {{ agent.location }} <br>
+        {{ node.grade }} <br>
+        {{ node.school }} <br>
+        {{ node.location }} <br>
       </div>
     </div>
   </div>

@@ -1,11 +1,4 @@
 <div class="summary-wrapper">
-  <div class="indicators">
-    <div class="indicator" *ngFor="let indicator of indicators">
-      <div class="name">{{ indicator.name }}</div>
-      <div class="score">{{ indicator.value | number:'2.0-0'}}%</div>
-    </div>
-  </div>
-
   <div class="summary-graph">
     <ngx-charts-polar-chart
       [results]="data"
@@ -13,4 +6,12 @@
       [yAxisMinScale]="100">
     </ngx-charts-polar-chart>
   </div>
+
+  <div class="indicators">
+    <div class="indicator" *ngFor="let indicator of indicators">
+      <div class="name">{{ indicator.name }}</div>
+      <div class="score">{{ indicator.value | number:'2.0-0'}}%</div>
+    </div>
+  </div>
+
 </div>

@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Size of nodes</h2>
+
+<div>
+
+  <mat-form-field>
+      <mat-select placeholder="Choose a size parameter">
+        <mat-option *ngFor="let param of parameters" [value]="param">
+          {{param}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="node-sizes">
+      <div class="min-max">
+        <div class="circle" style="height: 15px; width: 15px;"></div>
+        <div class="label">min.</div>
+      </div>
+      <div class="min-max">
+        <div class="label"> max. </div>
+        <div class="circle" style="height: 50px; width: 50px;"></div>
+      </div>
+    </div>
+
+
+  <div class="actions">
+    <button mat-button (click)="close()">Apply</button>
+  </div>
+
+</div>

@@ -34,7 +34,15 @@ import { LeftSidebarComponent } from './home/left-sidebar/left-sidebar.component
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { SearchSchoolsComponent } from './shared/search-schools/search-schools.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatTooltipModule } from '@angular/material';
+import { FilterModalComponent } from './home/filter/filter-modal/filter-modal.component';
+import { MatDialogModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NouisliderModule } from 'ng2-nouislider';
+import { FilterComponent } from './home/filter/filter.component';
+import { ColorModalComponent } from './home/filter/color-modal/color-modal.component';
+import { SizeModalComponent } from './home/filter/size-modal/size-modal.component';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -59,13 +67,19 @@ import { MatAutocompleteModule } from '@angular/material';
     RightSidebarComponent,
     LeftSidebarComponent,
     DropdownComponent,
-    SearchSchoolsComponent
+    SearchSchoolsComponent,
+    FilterModalComponent,
+    FilterComponent,
+    ColorModalComponent,
+    SizeModalComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
+    NoopAnimationsModule,
     AppRoutingModule,
     MaterialModule,
     NgxChartsModule,
@@ -73,13 +87,23 @@ import { MatAutocompleteModule } from '@angular/material';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogModule,
+    MatButtonModule,
+    NouisliderModule,
+    MatTooltipModule
   ],
   providers: [
     HttpClient,
     D3Service,
     GraphService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    FilterModalComponent,
+    ProfileComponent,
+    ColorModalComponent,
+    SizeModalComponent
+  ]
 })
 export class AppModule { }

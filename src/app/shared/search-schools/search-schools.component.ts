@@ -12,31 +12,31 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class SearchSchoolsComponent {
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('schoolInput') schoolInput: ElementRef<HTMLInputElement>;
 
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = false;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  schoolCtrl = new FormControl();
+  filteredSchools: Observable<string[]>;
+  schools: string[] = ['Paris'];
+  allSchools: string[] = ['Paris', 'Lille', 'Lyon', 'Marseille'];
 
   constructor() {
-    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+    this.filteredSchools = this.schoolCtrl.valueChanges.pipe(
     startWith(null),
-    map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+    map((school: string | null) => school ? this._filter(school) : this.allSchools.slice()));
   }
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    // Add our school
     if ((value || '').trim()) {
-      this.fruits.push(value.trim());
+      this.schools.push(value.trim());
     }
 
     // Reset the input value
@@ -44,27 +44,27 @@ export class SearchSchoolsComponent {
       input.value = '';
     }
 
-    this.fruitCtrl.setValue(null);
+    this.schoolCtrl.setValue(null);
   }
 
-  remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(school: string): void {
+    const index = this.schools.indexOf(school);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.schools.splice(index, 1);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+    this.schools.push(event.option.viewValue);
+    this.schoolInput.nativeElement.value = '';
+    this.schoolCtrl.setValue(null);
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+    return this.allSchools.filter(school => school.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

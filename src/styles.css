@@ -1,3 +1,49 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
+@import "~nouislider/distribute/nouislider.min.css";
+
+
+.noUi-base {
+  background-color: rgba(3, 155, 229, 0.41);
+  border: none;
+  height: 2px;
+}
+
+.noUi-horizontal {
+  height: 0;
+}
+
+.noUi-target {
+  border: none;
+}
+
+.noUi-horizontal .noUi-handle {
+  height: 5px;
+  border: none;
+  box-shadow: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #039BE5;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  top: -7px;
+}
+
+.noUi-handle:after, .noUi-handle:before {
+  content: none;
+}
+
+.noUi-connect {
+  height: 2px;
+  background-color: #039BE5;
+  border: 1px solid #039BE5;
+}
+
+html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
+  right: -5px;
+  left: auto;
+}
+

@@ -12,8 +12,8 @@ export class GraphComponent implements OnInit {
   @Input() adjancy: any;
   @Input() nodeTypes: any;
 
-  width = 1207;
-  height = 1000;
+  width = 968;
+  height = 800;
 
   nodes: Node[];
   links: Link[];

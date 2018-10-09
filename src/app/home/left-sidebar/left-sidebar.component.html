@@ -2,22 +2,14 @@
   <div class="section-header mat-elevation-z1">
     Filters
   </div>
-  <div class="chips-selected">
-    <mat-chip-list #chipList>
-      <mat-chip
-        [selectable]="true"
-        [removable]="true"
-        (removed)="remove(fruit)">
-        Jean Jaures
-      <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip>
-    </mat-chip-list>
+  <div class="filters">
+    <mat-form-field>
+      <mat-select placeholder="Filter with" multiple>
+        <mat-option *ngFor="let param of params" [value]="param" (click)="selection.toggle(param)">
+          {{param}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-</div>
-
-<div class="section">
-  <div class="section-header mat-elevation-z1">
-    Filters
-  </div>
-  <app-dropdown></app-dropdown>
+  <app-filter *ngFor="let filter of selection.selected"></app-filter>
 </div>

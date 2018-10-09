@@ -4,10 +4,10 @@
 }
 
 .avatar {
-  width: 250px;
-  height: 250px;
+  width: 115px;
+  height: 115px;
   background-color: #cfcfcf;
-  margin: 35px;
+  margin-right: 24px;
 }
 
 img {
@@ -16,16 +16,16 @@ img {
   display: cover;
 }
 
-.details {
-  margin: 40px 35px 35px 0px;
-}
 .name {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   line-height: normal;
-  font-size: 34px;
-  padding-bottom: 17px;
+  font-size: 28px;
+}
+
+.node-id {
+  font-size: 12px;
 }
 
 .address {
@@ -33,5 +33,5 @@ img {
   font-style: normal;
   font-weight: normal;
   line-height: normal;
-  font-size: 24px;
+  font-size: 18px;
 }

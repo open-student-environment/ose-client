@@ -5,21 +5,22 @@
     <div class="profile-details">
       <app-profile-details></app-profile-details>
     </div>
-    <div class="indicators-summary">
+    <!-- <div class="indicators-summary">
       <app-profile-summary></app-profile-summary>
-    </div>
+    </div> -->
 
   </div>
 
   <mat-tab-group mat-stretch-tabs>
     <mat-tab label="XAPI ACTIVITY">
-      <app-activity></app-activity>
+      <app-activity [node]="node"></app-activity>
     </mat-tab>
-    <mat-tab label="GRADES">
+    <!-- <mat-tab label="GRADES">
       <app-grades></app-grades>
-    </mat-tab>
+    </mat-tab> -->
     <mat-tab label="INDICATORS">
-      <app-indicators></app-indicators>
+      <!-- <app-indicators></app-indicators> -->
+      <app-grades [node]="node"></app-grades>
     </mat-tab>
   </mat-tab-group>
 

@@ -1,17 +1,17 @@
 <mat-form-field class="example-chip-list">
     <mat-chip-list #chipList>
       <mat-chip
-        *ngFor="let fruit of fruits"
+        *ngFor="let school of schools"
         [selectable]="selectable"
         [removable]="removable"
-        (removed)="remove(fruit)">
-        {{fruit}}
+        (removed)="remove(school)">
+        {{school}}
         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
       </mat-chip>
       <input
-        placeholder="Chercher une école..."
-        #fruitInput
-        [formControl]="fruitCtrl"
+        placeholder="Chercher une école ou académie..."
+        #schoolInput
+        [formControl]="schoolCtrl"
         [matAutocomplete]="auto"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -19,8 +19,8 @@
         (matChipInputTokenEnd)="add($event)">
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-        {{fruit}}
+      <mat-option *ngFor="let school of filteredSchools | async" [value]="school">
+        {{school}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

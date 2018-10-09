@@ -1,0 +1,28 @@
+.node-sizes {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.min-max {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.circle {
+  border: 1px solid black;
+  border-radius: 50px;
+  margin: 0 10px 0 10px;
+}
+
+.label {
+  margin: 0 0 -5px 0;
+}
+
+.actions {
+  flex: 1;
+  align-content: flex-end;
+}
