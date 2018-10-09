@@ -11,3 +11,8 @@
   margin: 12px;
   background-image: linear-gradient(to right, red, yellow);
 }
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}

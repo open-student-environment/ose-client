@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { GraphService } from '../services/graph.service';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { GraphComponent } from '../graph/graph.component';
+import { gray } from 'd3';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +12,10 @@ import { finalize } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild(GraphComponent) graph: GraphComponent;
+
   nodes: any[];
-  adjacency: any;
+  links: any;
   loadingSubject = new BehaviorSubject<Boolean>(true);
   loading$ = this.loadingSubject.asObservable();
   filters: any[] = [];
@@ -24,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.graphService.getNodes()
       .subscribe(nodes => {
         this.nodes = nodes;
-        this.getAdjacency();
+        this.getLinks();
       });
     this.graphService.getParameters()
       .subscribe(params => {
@@ -39,10 +43,17 @@ export class HomeComponent implements OnInit {
     console.log(this.filters);
   }
 
-  getAdjacency() {
-    this.graphService.getAdjacency()
+  getLinks() {
+    this.graphService.getLinks()
       .pipe(finalize(() => this.loadingSubject.next(false)))
-      .subscribe(adj => this.adjacency = adj);
+      .subscribe(links => this.links = links);
   }
 
+  showNodes() {
+    const nodes = this.graph.getNodes();
+    for (const node of nodes) {
+      node.size = 20;
+    }
+    console.log(nodes);
+  }
 }
