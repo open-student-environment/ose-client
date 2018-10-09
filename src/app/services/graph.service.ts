@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 import { Node } from '../d3/models';
@@ -27,13 +26,18 @@ export class GraphService {
   ) { }
 
   getNodes() {
-    const url = 'http://f11777f0.ngrok.io/nodes';
+    const url = environment.apiUrl + 'nodes';
     return this.httpClient.get<any[]>(url);
   }
 
   getAdjacency() {
-    const url = 'http://f11777f0.ngrok.io/adjancy';
+    const url = environment.apiUrl + 'adjancy';
     return this.httpClient.get(url);
+  }
+
+  getModel() {
+    const url = environment.apiUrl + 'model';
+    return this.httpClient.get<string[]>(url);
   }
 
   getSummary(node: Node) {
@@ -52,7 +56,7 @@ export class GraphService {
 
   getParameters(node: Node = null) {
     const url = environment.apiUrl + 'model/parameters';
-    return this.httpClient.get(url);
+    return this.httpClient.get<any[]>(url);
   }
 
   getParametersWithContext(node: Node) {

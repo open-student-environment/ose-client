@@ -1,8 +1,8 @@
 .summary-wrapper {
   display: flex;
-
 }
 .indicators {
+  flex: 1;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
@@ -23,6 +23,8 @@
 
 .summary-graph {
   width: 300px;
-  height: 300px;
+  height: 400px;
+  display: flex;
+  flex: 1;
 }
 

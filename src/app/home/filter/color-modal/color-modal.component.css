@@ -1,0 +1,13 @@
+.color-picker {
+  display: flex;
+  align-items: center;
+}
+
+.gradient {
+  display: flex;
+  flex: 1;
+  height: 23px;
+  width: 100%;
+  margin: 12px;
+  background-image: linear-gradient(to right, red, yellow);
+}

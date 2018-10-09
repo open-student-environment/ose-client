@@ -1,0 +1,22 @@
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 40px;
+}
+
+nouislider {
+  flex: 1 1 auto;
+  padding: 0 20px;
+}
+
+span {
+  font-size: 14px;
+  text-align: center;
+  color: #000000;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MatGridTile } from '@angular/material';
+import { Component, Input, OnInit } from '@angular/core';
 import { GraphService } from '../../services/graph.service';
 
 @Component({
@@ -8,8 +7,10 @@ import { GraphService } from '../../services/graph.service';
   styleUrls: ['./profile-summary.component.css']
 })
 export class ProfileSummaryComponent implements OnInit {
-  data: any;
 
+  @Input() node = {id: '55db4891-9ea6-4c5d-b55d-2063f815d90d'};
+
+  data: any;
   indicators = [];
 
   constructor(
@@ -17,8 +18,7 @@ export class ProfileSummaryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const node = {id: '55db4891-9ea6-4c5d-b55d-2063f815d90d'};
-    this.graphService.getSummary(node)
+    this.graphService.getSummary(this.node)
       .subscribe((series: any) => {
         this.data = [series];
         for (const indicator of series.series) {

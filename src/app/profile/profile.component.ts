@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Inject } from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { Node } from '../d3';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  @Input() node: Node;
+
+  constructor(
+    private dialogRef: MatDialogRef<ProfileComponent>,
+    @Inject(MAT_DIALOG_DATA) data
+  ) {
+    this.node = data.node;
+  }
 
   ngOnInit() {
   }

@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{title}}</h2>
+
+<div [formGroup]="form">
+
+  <div class="slider-wrapper">
+    <span>{{ form.controls.range.value[0] | number: '2.0-2'}}</span>
+      <nouislider [min]="inf" [max]="sup" [step]="(sup - inf) / 1000" [formControl]="form.controls.range"></nouislider>
+    <span>{{ form.controls.range.value[1] | number: '2.0-2'}}</span>
+  </div>
+
+  <div class="actions">
+    <button mat-button (click)="close()">Apply</button>
+    <!-- <button mat-raised-button (click)="save()">Apply</button> -->
+  </div>
+
+</div>
