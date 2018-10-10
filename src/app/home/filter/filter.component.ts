@@ -3,7 +3,6 @@ import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import { SizeModalComponent } from './size-modal/size-modal.component';
 import { ColorModalComponent } from './color-modal/color-modal.component';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-filter',
@@ -17,6 +16,7 @@ export class FilterComponent implements OnInit {
   @Input() title: string;
   @Input() inf: number;
   @Input() sup: number;
+  @Input() parameters: string[];
   @Output() filterEvent = new EventEmitter();
 
   @ViewChild('button') buttonRef;
@@ -50,6 +50,7 @@ export class FilterComponent implements OnInit {
       title: this.title,
       inf: this.inf,
       sup: this.sup,
+      parameters: this.parameters
     };
 
     let dialogRef: MatDialogRef<any, any>;
@@ -73,9 +74,4 @@ export class FilterComponent implements OnInit {
 
   }
 
-}
-
-interface ModalEvent {
-    type: string;
-    payload: any;
 }

@@ -32,11 +32,13 @@
         [type]="'size'"
         [title]="'Size'"
         [align]="'top-right'"
+        [parameters]="params"
         (filterEvent)="resize($event)"></app-filter>
       <app-filter
         [type]="'color'"
         [title]="'color'"
         [align]="'top-right'"
+        [parameters]="params"
         (filterEvent)="recolor($event)"></app-filter>
     </div>
   </div>

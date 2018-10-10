@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-size-modal',
@@ -9,24 +9,24 @@ import { MatDialogRef } from '@angular/material';
 })
 export class SizeModalComponent implements OnInit {
 
-  @Input() indicators: string[] = [];
-
   form: FormGroup;
-  parameters = ['None', 'Activity'];
+  parameters: string[];
   growthFunctions = ['Linear', 'Logarithmic'];
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<SizeModalComponent>,
-  ) { }
+    @Inject(MAT_DIALOG_DATA) data
+  ) {
+    this.parameters = ['None'].concat(data.parameters);
+  }
 
   ngOnInit() {
-    this.parameters = this.parameters.concat(this.indicators);
     this.form =  this.fb.group({
       parameter: ['None', []],
       minSize: [5, []],
-      maxSize: [50, []],
-      growth: ['linear', []]
+      maxSize: [30, []],
+      growth: ['Linear', []]
     });
   }
 

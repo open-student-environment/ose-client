@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   loadingSubject = new BehaviorSubject<Boolean>(true);
   loading$ = this.loadingSubject.asObservable();
   filters: any[] = [];
+  params: string[] = ['Activity', 'NodeType'];
 
   constructor(
     private graphService: GraphService,
@@ -38,7 +39,9 @@ export class HomeComponent implements OnInit {
           filter['min'] = Math.min.apply(null, param.series.map(e => e.name));
           filter['max'] = Math.max.apply(null, param.series.map(e => e.name));
           this.filters.push(filter);
+          this.params.push(param.name);
         }
+        console.log(params);
       });
   }
 
@@ -49,23 +52,42 @@ export class HomeComponent implements OnInit {
   }
 
   refilter(event) {
-    console.log(event);
+    const nodes = this.graph.getNodes();
+    if (event) {
+      for (const node of nodes) {
+        if (node.indicators) {
+          const v = node.indicators[event.title.toLowerCase()];
+          console.log(v);
+          if (v <= event.min || v >= event.max) {
+            node.size = 0;
+          }
+        }
+      }
+    }
   }
 
   resize(event) {
     const nodes = this.graph.getNodes();
-    console.log(nodes);
-    for (const node of nodes) {
-      if (node.indicators) {
-        node.size = node.indicators[event.parameter.toLowerCase()];
+    if (event) {
+      for (const node of nodes) {
+        if (node.indicators) {
+          node.size = node.indicators[event.parameter.toLowerCase()];
+        }
       }
     }
   }
 
   recolor(event) {
+    console.log(event);
     const nodes = this.graph.getNodes();
-    for (const node of nodes) {
-      node.color = 'red';
+    if (event) {
+      for (const node of nodes) {
+        if (node.indicators) {
+          node.color = node.indicators[event.parameter.toLowerCase()];
+        } else {
+          node.color = 'grey';
+        }
+      }
     }
   }
 }
