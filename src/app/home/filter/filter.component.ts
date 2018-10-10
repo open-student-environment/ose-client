@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import { SizeModalComponent } from './size-modal/size-modal.component';
@@ -16,10 +16,10 @@ export class FilterComponent implements OnInit {
   @Input() title: string;
   @Input() inf: number;
   @Input() sup: number;
+  @Input() parameters: string[];
+  @Output() filterEvent = new EventEmitter();
 
   @ViewChild('button') buttonRef;
-
-  dialogOpen = false;
 
   constructor(
     private dialog: MatDialog
@@ -50,6 +50,7 @@ export class FilterComponent implements OnInit {
       title: this.title,
       inf: this.inf,
       sup: this.sup,
+      parameters: this.parameters
     };
 
     let dialogRef: MatDialogRef<any, any>;
@@ -68,12 +69,8 @@ export class FilterComponent implements OnInit {
       }
     }
 
-    dialogRef.afterOpen().subscribe(
-      data => this.dialogOpen = true
-    );
-    dialogRef.afterClosed().subscribe(
-      data => this.dialogOpen = false
-    );
+    dialogRef.afterClosed()
+    .subscribe(event => this.filterEvent.emit(event));
 
   }
 

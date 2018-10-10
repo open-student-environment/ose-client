@@ -3,12 +3,12 @@
 <div [formGroup]="form">
 
   <mat-form-field>
-      <mat-select placeholder="Choose a color parameter">
-        <mat-option *ngFor="let param of parameters" [value]="param">
-          {{param}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <mat-select placeholder="Choose a color parameter" formControlName="parameter">
+      <mat-option *ngFor="let param of parameters" [value]="param">
+        {{param}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
     <div class="color-picker">
       <input #leftColor type="color" formControlName="leftColor" />
@@ -18,9 +18,9 @@
 
     
     <div class="actions">
-      <button mat-button (click)="close()">Apply</button>
+      <button mat-button (click)="apply()">Apply</button>
     </div>
     
-    {{ gradient| safeHtml}}
+    <!-- {{ gradient| safeHtml}} -->
 
 </div>

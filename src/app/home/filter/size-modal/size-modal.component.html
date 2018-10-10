@@ -1,16 +1,23 @@
 <h2 mat-dialog-title>Size of nodes</h2>
 
-<div>
+<div [formGroup]="form">
 
   <mat-form-field>
-      <mat-select placeholder="Choose a size parameter">
-        <mat-option *ngFor="let param of parameters" [value]="param">
-          {{param}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <mat-select placeholder="Choose a size parameter" formControlName="parameter">
+      <mat-option *ngFor="let param of parameters" [value]="param">
+        {{param}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Choose a scale function" formControlName="growth">
+      <mat-option *ngFor="let func of growthFunctions" [value]="func">
+        {{func}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <div class="node-sizes">
+    <!-- <div class="node-sizes">
       <div class="min-max">
         <div class="circle" style="height: 15px; width: 15px;"></div>
         <div class="label">min.</div>
@@ -19,11 +26,11 @@
         <div class="label"> max. </div>
         <div class="circle" style="height: 50px; width: 50px;"></div>
       </div>
-    </div>
+    </div> -->
 
 
   <div class="actions">
-    <button mat-button (click)="close()">Apply</button>
+    <button mat-button (click)="apply()">Apply</button>
   </div>
 
 </div>

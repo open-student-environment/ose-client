@@ -43,6 +43,8 @@ import { FilterComponent } from './home/filter/filter.component';
 import { ColorModalComponent } from './home/filter/color-modal/color-modal.component';
 import { SizeModalComponent } from './home/filter/size-modal/size-modal.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,9 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   DataService, { dataEncapsulation: false }
+    // ),
     // BrowserAnimationsModule,
     NoopAnimationsModule,
     AppRoutingModule,

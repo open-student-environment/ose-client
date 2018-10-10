@@ -16,20 +16,36 @@
   
   <div class="filters-wrapper"> 
     <div class="filters">
-      <app-filter [title]="filter.name" [inf]="filter.min" [sup]="filter.max" [align]="'right'" *ngFor="let filter of filters"></app-filter>
+      <app-filter
+        [title]="filter.name" 
+        [inf]="filter.min"
+        [sup]="filter.max"
+        [align]="'right'"
+        (filterEvent)="refilter($event)"
+        *ngFor="let filter of filters"></app-filter>
     </div>
   </div>
 
   <div class="palette-wrapper">
     <div class="palette">
-      <app-filter [type]="'size'" [title]="'Size'" [align]="'top-right'"></app-filter>
-      <app-filter [type]="'color'" [title]="'color'" [align]="'top-right'"></app-filter>
+      <app-filter
+        [type]="'size'"
+        [title]="'Size'"
+        [align]="'top-right'"
+        [parameters]="params"
+        (filterEvent)="resize($event)"></app-filter>
+      <app-filter
+        [type]="'color'"
+        [title]="'color'"
+        [align]="'top-right'"
+        [parameters]="params"
+        (filterEvent)="recolor($event)"></app-filter>
     </div>
   </div>
 
 
   <div class="svg-wrapper">
-    <app-graph [nodeTypes]="nodes" [adjancy]="adjacency" *ngIf="!(loading$ | async)"></app-graph>
+    <app-graph #graph [nodes]="nodes" [links]="links" *ngIf="!(loading$ | async)"></app-graph>
   </div>
 <!-- 
   </div>

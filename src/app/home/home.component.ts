@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { GraphService } from '../services/graph.service';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { GraphComponent } from '../graph/graph.component';
+import { gray } from 'd3';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +12,14 @@ import { finalize } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild(GraphComponent) graph: GraphComponent;
+
   nodes: any[];
-  adjacency: any;
+  links: any;
   loadingSubject = new BehaviorSubject<Boolean>(true);
   loading$ = this.loadingSubject.asObservable();
   filters: any[] = [];
+  params: string[] = ['Activity', 'NodeType'];
 
   constructor(
     private graphService: GraphService,
@@ -24,7 +29,7 @@ export class HomeComponent implements OnInit {
     this.graphService.getNodes()
       .subscribe(nodes => {
         this.nodes = nodes;
-        this.getAdjacency();
+        this.getLinks();
       });
     this.graphService.getParameters()
       .subscribe(params => {
@@ -34,15 +39,55 @@ export class HomeComponent implements OnInit {
           filter['min'] = Math.min.apply(null, param.series.map(e => e.name));
           filter['max'] = Math.max.apply(null, param.series.map(e => e.name));
           this.filters.push(filter);
+          this.params.push(param.name);
         }
+        console.log(params);
       });
-    console.log(this.filters);
   }
 
-  getAdjacency() {
-    this.graphService.getAdjacency()
+  getLinks() {
+    this.graphService.getLinks()
       .pipe(finalize(() => this.loadingSubject.next(false)))
-      .subscribe(adj => this.adjacency = adj);
+      .subscribe(links => this.links = links);
   }
 
+  refilter(event) {
+    const nodes = this.graph.getNodes();
+    if (event) {
+      for (const node of nodes) {
+        if (node.indicators) {
+          const v = node.indicators[event.title.toLowerCase()];
+          console.log(v);
+          if (v <= event.min || v >= event.max) {
+            node.size = 0;
+          }
+        }
+      }
+    }
+  }
+
+  resize(event) {
+    const nodes = this.graph.getNodes();
+    if (event) {
+      for (const node of nodes) {
+        if (node.indicators) {
+          node.size = node.indicators[event.parameter.toLowerCase()];
+        }
+      }
+    }
+  }
+
+  recolor(event) {
+    console.log(event);
+    const nodes = this.graph.getNodes();
+    if (event) {
+      for (const node of nodes) {
+        if (node.indicators) {
+          node.color = node.indicators[event.parameter.toLowerCase()];
+        } else {
+          node.color = 'grey';
+        }
+      }
+    }
+  }
 }

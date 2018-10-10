@@ -9,14 +9,11 @@ import { ForceDirectedGraph, Node, Link } from '../d3/models';
 })
 export class GraphComponent implements OnInit {
 
-  @Input() adjancy: any;
-  @Input() nodeTypes: any;
+  @Input() nodes: Node[];
+  @Input() links: Link[];
 
   width = 968;
   height = 800;
-
-  nodes: Node[];
-  links: Link[];
   graph: ForceDirectedGraph;
 
   constructor(private d3Service: D3Service) { }
@@ -46,27 +43,18 @@ export class GraphComponent implements OnInit {
   }
 
   launchSimulation() {
+    for (const node of this.nodes) {
+      node.color = this.getColor(node.type);
+      node.size = 10;
+    }
+    this.graph = this.d3Service.getForceDirectedGraph(
+      this.nodes,
+      this.links,
+      {width: this.width, height: this.height});
+  }
 
-    const nodeColors = {};
-    this.nodeTypes.forEach(element => {
-      nodeColors[element.name] = this.getColor(element.type);
-    });
-    const nodes = Object.keys(this.adjancy)
-      .map(node => new Node(node, nodeColors[node]));
-    const invnodes = {};
-    for (const node of nodes) {
-      invnodes[node.id] = node;
-    }
-    const links = [];
-    for (let i = 0; i < nodes.length; i++) {
-        const source = nodes[i];
-        for (const target of this.adjancy[source.id]) {
-            links.push(new Link(source, invnodes[target]));
-        }
-    }
-    this.nodes = nodes;
-    this.links = links;
-    this.graph = this.d3Service.getForceDirectedGraph(nodes, links, {width: this.width, height: this.height});
+  getNodes() {
+    return this.nodes;
   }
 
 }

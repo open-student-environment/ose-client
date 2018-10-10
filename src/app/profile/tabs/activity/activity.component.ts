@@ -21,6 +21,7 @@ export class ActivityComponent implements OnInit {
         color: []
       },
       text: [],
+      textposition: 'top',
       type: 'scatter'
     }],
     layout: {height: 400}
@@ -49,6 +50,7 @@ export class ActivityComponent implements OnInit {
             color: text.map(e => this.getColor(e))
           },
           text: text,
+          textposition: 'top',
           type: 'scatter'
         }];
       });
@@ -68,8 +70,11 @@ export class ActivityComponent implements OnInit {
       case 'http://adlnet.gov/expapi/verbs/answered': {
         return 6;
       }
-      default: {
+      case 'http://adlnet.gov/expapi/verbs/produced': {
         return 8;
+      }
+      default: {
+        return 10;
       }
     }
 

@@ -15,6 +15,7 @@ export class FilterModalComponent implements OnInit {
   sup: number;
   title: string;
   range: number|number[];
+  parameters: string[];
 
   constructor(
     private fb: FormBuilder,
@@ -24,6 +25,7 @@ export class FilterModalComponent implements OnInit {
     this.title = data.title;
     this.inf = data.inf;
     this.sup = data.sup;
+    this.parameters = data.parameters;
   }
 
   ngOnInit() {
@@ -33,12 +35,7 @@ export class FilterModalComponent implements OnInit {
     });
   }
 
-  save() {
+  apply() {
     this.dialogRef.close(this.form.value);
   }
-
-  close() {
-    this.dialogRef.close();
-  }
-
 }

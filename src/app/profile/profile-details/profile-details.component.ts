@@ -8,17 +8,16 @@ import { Md5 } from 'ts-md5/dist/md5';
 })
 export class ProfileDetailsComponent implements OnInit {
 
-  @Input() node = {
-    id: '55db4891-9ea6-4c5d-b55d-2063f815d90d',
-    name: 'Maxime Dupont',
-    grade: '6ème',
-    school: 'Collège Jean Jaurès',
-    location: 'Paris'
-  };
+  @Input() node: any;
 
-  md5Hash(id) {
+  md5Hash(node) {
     const md5 = new Md5();
-    const s = `https://www.gravatar.com/avatar/${md5.appendStr(id).end()}?d=robohash&s=250`;
+    let s = '';
+    if (node.type === 'user:eleve' || node.type === 'user:enseignant') {
+      s = `https://www.gravatar.com/avatar/${md5.appendStr(node.id).end()}?d=robohash&s=250`;
+    } else {
+      s = `https://www.gravatar.com/avatar/${md5.appendStr(node.id).end()}?d=retro&s=250`;
+    }
     return s;
   }
 

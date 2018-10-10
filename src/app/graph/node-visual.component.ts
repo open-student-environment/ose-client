@@ -7,12 +7,12 @@ import { ProfileComponent } from '../profile/profile.component';
 @Component({
   selector: '[nodeVisual]',
   template: `
-    <ng-template #tipContent>Hello <b>{{node.id}}</b>!</ng-template>
+    <ng-template #tipContent>Je suis <b>{{node.name}}</b>!</ng-template>
     <svg:g
       [attr.transform]="'translate(' + node.x + ',' + node.y + ')'"
       [ngbTooltip]="tipContent" container="body"
-      (click)="openDialog(node)">
-      <svg:circle cx="0" cy="0" r="10" [attr.fill]="node.color"></svg:circle>
+      (click)="openDialog(node); onClick(node);">
+      <svg:circle cx="0" cy="0" [attr.r]="node.size" [attr.fill]="node.color"></svg:circle>
     <svg:g>
   `
 })
@@ -25,7 +25,8 @@ export class NodeVisualComponent {
   ) { }
 
   onClick(node) {
-    this.router.navigate(['/profile'], {queryParams: {node: node.id}});
+    console.log(node);
+    // this.router.navigate(['/profile'], {queryParams: {node: node.id}});
   }
 
   openDialog(node) {
