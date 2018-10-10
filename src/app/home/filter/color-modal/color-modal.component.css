@@ -9,7 +9,7 @@
   height: 23px;
   width: 100%;
   margin: 12px;
-  background-image: linear-gradient(to right, red, yellow);
+  /* background-image: linear-gradient(to right, red, yellow); */
 }
 
 .actions {

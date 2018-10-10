@@ -1,4 +1,5 @@
 <h2 mat-dialog-title>Color of nodes</h2>
+{{ gradient }}
 
 <div [formGroup]="form">
 
@@ -12,7 +13,7 @@
 
     <div class="color-picker">
       <input #leftColor type="color" formControlName="leftColor" />
-      <div class="gradient" [style.background-image]="gradient | safeHtml"></div>
+      <div class="gradient" [ngStyle]="bgImage()"></div>
       <input #rightColor type="color" formControlName="rightColor" />
     </div>
 
@@ -21,6 +22,5 @@
       <button mat-button (click)="apply()">Apply</button>
     </div>
     
-    <!-- {{ gradient| safeHtml}} -->
 
 </div>
