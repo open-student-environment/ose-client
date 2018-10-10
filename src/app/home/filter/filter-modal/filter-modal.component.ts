@@ -33,12 +33,7 @@ export class FilterModalComponent implements OnInit {
     });
   }
 
-  save() {
+  apply() {
     this.dialogRef.close(this.form.value);
   }
-
-  close() {
-    this.dialogRef.close();
-  }
-
 }

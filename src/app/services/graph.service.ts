@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 
 import { Node, Link } from '../d3/models';
 import { map, tap } from 'rxjs/operators';
+import { pairs } from 'd3';
 
 
 @Injectable({
@@ -117,7 +118,11 @@ const nodes: Node[] = [
     indicators: {
       strength: 10,
       grit: 20,
-      autonomy: 3
+      autonomy: 3,
+      stamina: 10,
+      stability: 10,
+      agility: 10,
+      activity: 10
     }
   },
   {
@@ -134,20 +139,34 @@ const nodes: Node[] = [
     name: 'Patick Jamet',
     id: '2935f172-8a35-4953-a801-3bc6b50596d6',
     type: 'user:eleve',
+    grade: 'CP',
+    school: 'Cirque du Soleil',
+    location: 'Paris',
     indicators: {
       strength: 10,
       grit: 2,
-      autonomy: 10
+      autonomy: 10,
+      stamina: 10,
+      stability: 10,
+      agility: 10,
+      activity: 12
     }
   },
   {
     name: 'Romain Pellen',
     id: '2935f172-8a35-4953-a801-3bc6b50596d6',
+    grade: 'CE1',
+    school: 'École Jules Clapet',
+    location: 'Paris',
     type: 'user:eleve',
     indicators: {
       strength: 10,
       grit: 5,
-      autonomy: 0
+      autonomy: 0,
+      stamina: 10,
+      stability: 10,
+      agility: 10,
+      activity: 10
     },
   },
   {
@@ -160,17 +179,30 @@ const nodes: Node[] = [
     id: 'b69b8e86-6e9d-4035-b951-0d36771ec8a3',
     type: 'user:enseignant',
     indicators: {
-      strenght: 100
+      strenght: 100,
+      grit: 5,
+      autonomy: 0,
+      stamina: 10,
+      stability: 10,
+      agility: 10,
+      activity: 67
     }
   },
   {
     name: 'David Panou',
     id: '9e356fa3-14a3-4210-91a9-34834eef3415',
     type: 'user:eleve',
+    school: 'EIG',
+    grade: 'CM1',
+    location: 'Paris',
       indicators: {
         strength: 10,
         grit: 5,
-        autonomy: 50
+        autonomy: 50,
+        stamina: 10,
+      stability: 10,
+      agility: 10,
+      activity: 12
       },
   },
   {
@@ -185,7 +217,11 @@ const nodes: Node[] = [
     indicators: {
       strength: 100,
       grit: 50,
-      autonomy: 50
+      autonomy: 50,
+      stamina: 10,
+      stability: 10,
+      agility: 10,
+      activity: 10
     },
   },
   {
@@ -200,27 +236,45 @@ const nodes: Node[] = [
     indicators: {
       strength: 100,
       grit: 50,
-      autonomy: 60
+      autonomy: 60,
+      stamina: 10,
+      stability: 10,
+      agility: 10,
+      activity: 56
     },
   },
   {
     name: 'Mathilde Bras',
     id: '2890ebd9-1147-4f16-8a65-b7239bd54bd0',
     type: 'user:eleve',
+    school: 'Étalab',
+    grade: 'Terminale',
+    location: 'Paris',
     indicators: {
       strength: 100,
       grit: 100,
-      autonomy: 100
+      autonomy: 100,
+      stamina: 10,
+      stability: 10,
+      agility: 10,
+      activity: 32
     },
   },
   {
     name: 'Soizic',
     id: '5eb0a97d-d2ee-48a7-b975-aefa1cab73aa',
     type: 'user:eleve',
+    school: 'Étalab',
+    grade: 'CP',
+    location: 'Paris',
     indicators: {
       strength: 200,
       grit: 100,
-      autonomy: 100
+      autonomy: 100,
+      stamina: 10,
+      stability: 10,
+      agility: 10,
+      activity: 24
     },
   }
 ];

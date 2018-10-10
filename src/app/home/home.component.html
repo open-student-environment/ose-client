@@ -16,15 +16,28 @@
   
   <div class="filters-wrapper"> 
     <div class="filters">
-      <app-filter [title]="filter.name" [inf]="filter.min" [sup]="filter.max" [align]="'right'" *ngFor="let filter of filters"></app-filter>
+      <app-filter
+        [title]="filter.name" 
+        [inf]="filter.min"
+        [sup]="filter.max"
+        [align]="'right'"
+        (filterEvent)="refilter($event)"
+        *ngFor="let filter of filters"></app-filter>
     </div>
   </div>
 
   <div class="palette-wrapper">
     <div class="palette">
-      <app-filter [type]="'size'" [title]="'Size'" [align]="'top-right'"></app-filter>
-      <app-filter [type]="'color'" [title]="'color'" [align]="'top-right'"></app-filter>
-      <button (click)="showNodes()"> CLICK ME</button>
+      <app-filter
+        [type]="'size'"
+        [title]="'Size'"
+        [align]="'top-right'"
+        (filterEvent)="resize($event)"></app-filter>
+      <app-filter
+        [type]="'color'"
+        [title]="'color'"
+        [align]="'top-right'"
+        (filterEvent)="recolor($event)"></app-filter>
     </div>
   </div>
 

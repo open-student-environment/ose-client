@@ -3,7 +3,7 @@
   <div class="profile-header">
 
     <div class="profile-details">
-      <app-profile-details></app-profile-details>
+      <app-profile-details [node]="node"></app-profile-details>
     </div>
     <!-- <div class="indicators-summary">
       <app-profile-summary></app-profile-summary>
@@ -11,7 +11,7 @@
 
   </div>
 
-  <mat-tab-group mat-stretch-tabs>
+  <mat-tab-group mat-stretch-tabs  *ngIf="node">
     <mat-tab label="XAPI ACTIVITY">
       <app-activity [node]="node"></app-activity>
     </mat-tab>

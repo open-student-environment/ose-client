@@ -22,8 +22,8 @@
 }
 
 .summary-graph {
-  width: 300px;
-  height: 400px;
+  width: 400px;
+  height: 450px;
   display: flex;
   flex: 1;
 }

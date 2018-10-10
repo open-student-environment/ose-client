@@ -9,7 +9,7 @@ import { Node } from '../d3';
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() node: Node;
+  node: Node;
 
   constructor(
     private dialogRef: MatDialogRef<ProfileComponent>,

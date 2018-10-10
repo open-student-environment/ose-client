@@ -49,11 +49,21 @@ export class HomeComponent implements OnInit {
       .subscribe(links => this.links = links);
   }
 
-  showNodes() {
+  refilter(event) {
+    console.log(event);
+  }
+
+  resize(event) {
     const nodes = this.graph.getNodes();
     for (const node of nodes) {
       node.size = 20;
     }
-    console.log(nodes);
+  }
+
+  recolor(event) {
+    const nodes = this.graph.getNodes();
+    for (const node of nodes) {
+      node.color = 'red';
+    }
   }
 }

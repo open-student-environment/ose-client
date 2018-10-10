@@ -21,6 +21,7 @@ export class ActivityComponent implements OnInit {
         color: []
       },
       text: [],
+      textposition: 'top',
       type: 'scatter'
     }],
     layout: {height: 400}
@@ -49,6 +50,7 @@ export class ActivityComponent implements OnInit {
             color: text.map(e => this.getColor(e))
           },
           text: text,
+          textposition: 'top',
           type: 'scatter'
         }];
       });

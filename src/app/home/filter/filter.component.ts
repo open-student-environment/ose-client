@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material';
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
 import { SizeModalComponent } from './size-modal/size-modal.component';
 import { ColorModalComponent } from './color-modal/color-modal.component';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-filter',
@@ -16,10 +17,9 @@ export class FilterComponent implements OnInit {
   @Input() title: string;
   @Input() inf: number;
   @Input() sup: number;
+  @Output() filterEvent = new EventEmitter();
 
   @ViewChild('button') buttonRef;
-
-  dialogOpen = false;
 
   constructor(
     private dialog: MatDialog
@@ -68,13 +68,14 @@ export class FilterComponent implements OnInit {
       }
     }
 
-    dialogRef.afterOpen().subscribe(
-      data => this.dialogOpen = true
-    );
-    dialogRef.afterClosed().subscribe(
-      data => this.dialogOpen = false
-    );
+    dialogRef.afterClosed()
+    .subscribe(event => this.filterEvent.emit(event));
 
   }
 
+}
+
+interface ModalEvent {
+    type: string;
+    payload: any;
 }
