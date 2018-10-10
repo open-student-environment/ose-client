@@ -10,9 +10,14 @@ export class ProfileDetailsComponent implements OnInit {
 
   @Input() node: any;
 
-  md5Hash(id) {
+  md5Hash(node) {
     const md5 = new Md5();
-    const s = `https://www.gravatar.com/avatar/${md5.appendStr(id).end()}?d=robohash&s=250`;
+    let s = '';
+    if (node.type === 'user:eleve' || node.type === 'user:enseignant') {
+      s = `https://www.gravatar.com/avatar/${md5.appendStr(node.id).end()}?d=robohash&s=250`;
+    } else {
+      s = `https://www.gravatar.com/avatar/${md5.appendStr(node.id).end()}?d=retro&s=250`;
+    }
     return s;
   }
 

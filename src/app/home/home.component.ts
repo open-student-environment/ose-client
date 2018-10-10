@@ -40,7 +40,6 @@ export class HomeComponent implements OnInit {
           this.filters.push(filter);
         }
       });
-    console.log(this.filters);
   }
 
   getLinks() {
@@ -55,8 +54,11 @@ export class HomeComponent implements OnInit {
 
   resize(event) {
     const nodes = this.graph.getNodes();
+    console.log(nodes);
     for (const node of nodes) {
-      node.size = 20;
+      if (node.indicators) {
+        node.size = node.indicators[event.parameter.toLowerCase()];
+      }
     }
   }
 
