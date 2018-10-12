@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { MediaMatcher } from '@angular/cdk/layout';
-
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-layout',

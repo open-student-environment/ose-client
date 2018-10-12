@@ -3,7 +3,8 @@ import { GraphService } from '../services/graph.service';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { GraphComponent } from '../graph/graph.component';
-import { gray } from 'd3';
+import * as d3 from 'd3';
+import { SearchSchoolsComponent } from '../shared/search-schools/search-schools.component';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { gray } from 'd3';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild(SearchSchoolsComponent) search: SearchSchoolsComponent;
   @ViewChild(GraphComponent) graph: GraphComponent;
 
   nodes: any[];
@@ -19,13 +21,14 @@ export class HomeComponent implements OnInit {
   loadingSubject = new BehaviorSubject<Boolean>(true);
   loading$ = this.loadingSubject.asObservable();
   filters: any[] = [];
-  params: string[] = ['Activity', 'NodeType'];
+  params: string[] = ['Activity'];
 
   constructor(
     private graphService: GraphService,
   ) { }
 
   ngOnInit() {
+    this.search.filteredSchools.subscribe(schools => this.filterSchools());
     this.graphService.getNodes()
       .subscribe(nodes => {
         this.nodes = nodes;
@@ -41,7 +44,6 @@ export class HomeComponent implements OnInit {
           this.filters.push(filter);
           this.params.push(param.name);
         }
-        console.log(params);
       });
   }
 
@@ -49,6 +51,17 @@ export class HomeComponent implements OnInit {
     this.graphService.getLinks()
       .pipe(finalize(() => this.loadingSubject.next(false)))
       .subscribe(links => this.links = links);
+  }
+
+  filterSchools() {
+    if (this.graph) {
+      const nodes = this.graph.getNodes();
+      for (const node of nodes) {
+        if (this.search.schools !== [] && !this.search.schools.includes(node.school)) {
+          node.size = 0;
+        }
+      }
+    }
   }
 
   refilter(event) {
@@ -70,7 +83,9 @@ export class HomeComponent implements OnInit {
     const nodes = this.graph.getNodes();
     if (event) {
       for (const node of nodes) {
-        if (node.indicators) {
+        if (event.parameter === 'None') {
+          node.size = 10;
+        } else if (node.indicators) {
           node.size = node.indicators[event.parameter.toLowerCase()];
         }
       }
@@ -79,11 +94,18 @@ export class HomeComponent implements OnInit {
 
   recolor(event) {
     console.log(event);
-    const nodes = this.graph.getNodes();
     if (event) {
+      const scale = d3.scaleQuantize()
+        .range(d3.range(9))
+        .domain([0, 31]);
+      const colorScale = d3.scaleLinear()
+        .range([event.leftColor, event.rightColor])
+        .domain([0, 9]);
+      const nodes = this.graph.getNodes();
       for (const node of nodes) {
         if (node.indicators) {
-          node.color = node.indicators[event.parameter.toLowerCase()];
+          const d = node.indicators[event.parameter.toLowerCase()];
+          node.color = colorScale(scale(d));
         } else {
           node.color = 'grey';
         }

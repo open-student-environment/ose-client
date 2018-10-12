@@ -12,7 +12,7 @@ export class ColorModalComponent implements OnInit {
 
   @Input() indicators: string[] = [];
   form: FormGroup;
-  parameters = ['NodeType', 'Activity'];
+  parameters = [];
   gradient: any;
 
   constructor(
@@ -25,19 +25,20 @@ export class ColorModalComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      parameter: ['NodeType', []],
+      parameter: ['', []],
       rightColor: ['#e66465', []],
       leftColor: ['#5d88e6', []]
     });
-    this.setGradient();
-  }
-
-  setGradient() {
-    this.gradient = `linear-gradient(to right, ${this.form.get('leftColor').value}, ${this.form.get('rightColor').value});`;
   }
 
   apply() {
     this.dialogRef.close(this.form.value);
+  }
+
+  bgImage() {
+    const lc = this.form.get('rightColor').value.slice(1, 7);
+    const rc = this.form.get('leftColor').value.slice(1, 7);
+    return {'background-image': `linear-gradient(to right, \#${rc}, \#${lc}`};
   }
 
 }
