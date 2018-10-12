@@ -83,8 +83,8 @@ import { DataService } from './services/data.service';
     // HttpClientInMemoryWebApiModule.forRoot(
     //   DataService, { dataEncapsulation: false }
     // ),
-    // BrowserAnimationsModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
+    // NoopAnimationsModule,
     AppRoutingModule,
     MaterialModule,
     NgxChartsModule,

@@ -1,52 +1,40 @@
-<!-- <mat-sidenav-container>
-  <mat-sidenav class="left-sidebar mat-elevation-z2" opened mode="side">
-    <app-left-sidebar></app-left-sidebar>
-  </mat-sidenav>
+<div class="graph-area">
 
-  <mat-sidenav class="right-sidebar mat-elevation-z2" opened mode="side" position="end">
-    <app-right-sidebar></app-right-sidebar>
-  </mat-sidenav> -->
+<div class="search">
+  <app-search-schools #search></app-search-schools>
+</div>
+<!-- <app-dropdown class="filter" [label]="'Ajouter un filter'" [choices]="['Académie', 'Niveau', 'Résilience', 'Autonomie']"></app-dropdown> -->
 
-  <div class="graph-area">
-
-  <div class="search">
-    <app-search-schools #search></app-search-schools>
+<div class="filters-wrapper"> 
+  <div class="filters">
+    <app-filter
+      [title]="filter.name" 
+      [inf]="filter.min"
+      [sup]="filter.max"
+      [align]="'right'"
+      (filterEvent)="refilter($event)"
+      *ngFor="let filter of filters"></app-filter>
   </div>
-  <!-- <app-dropdown class="filter" [label]="'Ajouter un filter'" [choices]="['Académie', 'Niveau', 'Résilience', 'Autonomie']"></app-dropdown> -->
-  
-  <div class="filters-wrapper"> 
-    <div class="filters">
-      <app-filter
-        [title]="filter.name" 
-        [inf]="filter.min"
-        [sup]="filter.max"
-        [align]="'right'"
-        (filterEvent)="refilter($event)"
-        *ngFor="let filter of filters"></app-filter>
-    </div>
-  </div>
+</div>
 
-  <div class="palette-wrapper">
-    <div class="palette">
-      <app-filter
-        [type]="'size'"
-        [title]="'Size'"
-        [align]="'top-right'"
-        [parameters]="params"
-        (filterEvent)="resize($event)"></app-filter>
-      <app-filter
-        [type]="'color'"
-        [title]="'color'"
-        [align]="'top-right'"
-        [parameters]="params"
-        (filterEvent)="recolor($event)"></app-filter>
-    </div>
+<div class="palette-wrapper">
+  <div class="palette">
+    <app-filter
+      [type]="'size'"
+      [title]="'Size'"
+      [align]="'top-right'"
+      [parameters]="params"
+      (filterEvent)="resize($event)"></app-filter>
+    <app-filter
+      [type]="'color'"
+      [title]="'color'"
+      [align]="'top-right'"
+      [parameters]="params"
+      (filterEvent)="recolor($event)"></app-filter>
   </div>
+</div>
 
 
-  <div class="svg-wrapper">
-    <app-graph #graph [nodes]="nodes" [links]="links" *ngIf="!(loading$ | async)"></app-graph>
-  </div>
-<!-- 
-  </div>
-</mat-sidenav-container> -->
+<div class="svg-wrapper">
+  <app-graph #graph [nodes]="nodes" [links]="links" *ngIf="!(loading$ | async)"></app-graph>
+</div>
