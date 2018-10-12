@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/ose-client
+    docker:
+      - image: circleci/node:8-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: ose-client-{{ .Branch }}-{{ checksum "package.json" }}
+      - run: 
+        name: install dependencies
+        command: | 
+        npm install -g @angular/cli
+        npm install
+      - save_cache:
+          key: ose-client-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
+      - run: 
+        name: build
+        command: ng build --prod
+        

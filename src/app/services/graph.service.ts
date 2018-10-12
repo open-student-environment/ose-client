@@ -29,27 +29,26 @@ export class GraphService {
 
   getNodes(): Observable<Node[]> {
     const url = environment.apiUrl + 'nodes';
-    // return this.httpClient.get<any[]>(url);
-    console.log(nodes);
-    return of(nodes);
+    return this.httpClient.get<any[]>(url)
+      .pipe(tap(nodes => console.log(nodes)));
   }
 
-  getLinks(): Observable<Link[]> {
+  getLinks(nodes): Observable<Link[]> {
     return this.getAdjacency()
       .pipe(
-        map(adj => this._getLinks(adj)),
+        tap(adj => console.log(adj)),
+        map(adj => this._getLinks(nodes, adj)),
         tap(links => console.log(links))
       );
   }
 
-  _getLinks(adjacency): Link[] {
+  _getLinks(nodes, adjacency): Link[] {
     const invnodes = {};
     for (const node of nodes) {
       invnodes[node.id] = node;
     }
     const links = [];
-    for (let i = 0; i < nodes.length; i++) {
-      const source = nodes[i];
+    for (const source of nodes) {
       for (const target of adjacency[source.id]) {
         links.push(new Link(source, invnodes[target]));
       }
@@ -110,7 +109,7 @@ export class GraphService {
   }
 }
 
-const nodes: Node[] = [
+const nnodes: Node[] = [
   {
     name: 'Prof. Xavier',
     id: '490d099c-c558-438e-9e7e-0dca1f21d1d3',

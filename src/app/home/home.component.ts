@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   loadingSubject = new BehaviorSubject<Boolean>(true);
   loading$ = this.loadingSubject.asObservable();
   filters: any[] = [];
-  params: string[] = ['Activity'];
+  params: string[] = [];
 
   constructor(
     private graphService: GraphService,
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     this.graphService.getNodes()
       .subscribe(nodes => {
         this.nodes = nodes;
-        this.getLinks();
+        this.getLinks(nodes);
       });
     this.graphService.getParameters()
       .subscribe(params => {
@@ -47,8 +47,8 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  getLinks() {
-    this.graphService.getLinks()
+  getLinks(nodes) {
+    this.graphService.getLinks(nodes)
       .pipe(finalize(() => this.loadingSubject.next(false)))
       .subscribe(links => this.links = links);
   }
