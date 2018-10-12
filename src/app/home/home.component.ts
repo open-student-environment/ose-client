@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
         if (event.parameter === 'None') {
           node.size = 10;
         } else if (node.indicators) {
-          node.size = node.indicators[event.parameter.toLowerCase()];
+          node.size = node.indicators[event.parameter];
         }
       }
     }
@@ -104,7 +104,7 @@ export class HomeComponent implements OnInit {
       const nodes = this.graph.getNodes();
       for (const node of nodes) {
         if (node.indicators) {
-          const d = node.indicators[event.parameter.toLowerCase()];
+          const d = node.indicators[event.parameter];
           node.color = colorScale(scale(d));
         } else {
           node.color = 'grey';
