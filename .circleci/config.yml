@@ -12,7 +12,7 @@ jobs:
         name: install dependencies
         command: | 
           npm install -g @angular/cli
-          yarn install
+          npm install
       - save_cache:
           key: ose-client-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
