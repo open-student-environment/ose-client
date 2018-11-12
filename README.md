@@ -1,27 +1,28 @@
-# OseClient
+[![CircleCI](https://circleci.com/gh/open-student-environment/ose-client/tree/master.svg?style=shield&circle-token=40c844ad8da4532d6038cfa1b76c7338c5e58e66)](https://circleci.com/gh/open-student-environment/ose-client/tree/master)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+# OSE xAPI dashboard
 
-## Development server
+A simple dashboard to visualize xAPI data and indicators.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![alt](https://preview.ibb.co/nmYKhq/Screen-Shot-2018-11-12-at-11-49-09.png)
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The dashboard provides the following fucntionalities:
 
-## Build
+* Visualize xAPI data
+* Visualize indicators
+* Build indicators (on the roadmap)
+* Assess the predictive power of an indicator (on the roadmap)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Running the dashboard
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng serve` to launch a development server, then navigate to `http://localhost:4200/`. 
 
-## Running end-to-end tests
+## Roadmap
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+OSE Dashboard is an open source initiative that started during the EIG2 program hosted at the french Ministry of Education. The project roadmap is hosted as GitHub issues and contributors are welcome.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
