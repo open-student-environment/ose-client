@@ -9,15 +9,15 @@ jobs:
       - restore_cache:
           key: ose-client-{{ .Branch }}-{{ checksum "package.json" }}
       - run: 
-        name: install dependencies
-        command: | 
-          npm install -g @angular/cli
-          npm install
+          name: install dependencies
+          command: | 
+            npm install -g @angular/cli
+            npm install
       - save_cache:
           key: ose-client-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - "node_modules"
       - run: 
-        name: build
-        command: ng build --prod
+          name: build
+          command: ng build --prod
         
