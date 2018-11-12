@@ -11,9 +11,7 @@
       </mat-chip>
       <input 
       [matChipInputFor]="chipList"
-      [matChipInputSeparatorKeyCodes]="[ENTER, COMMA]"
       [matChipInputAddOnBlur]="false"
-      (matChipInputTokenEnd)="add($event)"
       (click)="toggleTable=!toggleTable"
       (keyup)="applyFilter($event.target.value)"
       placeholder="Search schools">
