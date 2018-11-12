@@ -24,6 +24,7 @@
     "@angular/router": "^6.0.3",
     "@ng-bootstrap/ng-bootstrap": "^3.2.0",
     "@swimlane/ngx-charts": "^9.0.0",
+    "adm-zip": ">=0.4.11",
     "angular-in-memory-web-api": "^0.6.1",
     "angular-plotly.js": "^0.1.14",
     "bootstrap": "^4.1.3",
